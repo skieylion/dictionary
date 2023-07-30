@@ -1,6 +1,7 @@
 package com.dictionary.application.view;
 
 import com.dictionary.application.domain.CardContext;
+import com.dictionary.application.service.NewCardCommand;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.contextmenu.SubMenu;
@@ -20,10 +21,9 @@ public class MenuBarWrapper extends MenuBar {
     }
 
     public MenuBarWrapper add(String label, CardContext context) {
-        subItems.addItem(label).addClickListener(listener -> {
-            //NewCommand.execute();
-            //CardContainer, Component, MenuButtons
-        });
+        var item = subItems.addItem(label);
+        context.setItem(item);
+        item.addClickListener(listener -> new NewCardCommand(context).execute());
         return this;
     }
 }

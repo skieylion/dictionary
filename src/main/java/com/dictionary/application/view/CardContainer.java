@@ -1,5 +1,6 @@
 package com.dictionary.application.view;
 
+import com.dictionary.application.domain.CardContext;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Span;
@@ -54,7 +55,7 @@ public class CardContainer extends VerticalLayout {
         footer.add(hl);
     }
 
-    public void add(Component component, Collection<Button> icons) {
+    public CardContext.Container add(Component component, Collection<Button> icons) {
         var left = createContainerLayout();
         var layout = new VerticalLayout(component);
         layout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
@@ -64,8 +65,14 @@ public class CardContainer extends VerticalLayout {
         icons.forEach(right::add);
         var last = getComponentAt(getComponentCount() - 1);
         remove(last);
-        add(createLine(left, right));
+        var layoutComponent = createLine(left, right);
+        add(layoutComponent);
         add(last);
+        return new CardContext.Container(left, right, layoutComponent);
+    }
+
+    public void drop(Component component) {
+        remove(component);
     }
 
     private static VerticalLayout createPanel(Align align) {

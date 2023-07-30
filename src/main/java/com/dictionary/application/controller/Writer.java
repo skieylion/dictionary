@@ -1,6 +1,7 @@
 package com.dictionary.application.controller;
 
 import com.dictionary.application.domain.dto.CardDTO;
+import com.dictionary.application.service.EditCardCommand;
 import com.dictionary.application.service.Navigator;
 import com.dictionary.application.service.UnsplashService;
 import com.dictionary.application.service.validator.CardBoxValidator;
@@ -72,46 +73,56 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
         tf.setWidthFull();
         CardContainer cardContainer = new CardContainer();
         cardContainer.setHeader(tf);
-        var b1 = new Button("add ...");
-        b1.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        var b2 = new Button("save");
-        b2.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        var h = new HorizontalLayout(b1, b2);
-        h.setWidthFull();
-        h.setDefaultVerticalComponentAlignment(Alignment.CENTER);
-        h.setAlignItems(Alignment.CENTER);
-        cardContainer.setFooter(h);
-
-        var b11 = new ButtonMini(new Icon("lumo", "edit"));
-        var b22 = new ButtonMini(new Icon("lumo", "cross"));
-        List.of(ButtonMini.builder().build(), ButtonMini.builder().build());
-
         //new ImageSearcher()
-
-        cardContainer.add(picture, Arrays.asList(b11, b22));
-        cardContainer.add(new Span("22222222222"), new ArrayList<>());
-        cardContainer.add(new Span("sdfdsf"), new ArrayList<>());
-
-
         var picture = new StandardDefaultPicture();
         picture.setWidth(Size.PX_700);
         picture.setHeight(Size.PX_450);
 
-        MenuBarWrapper menuBarWrapper = new MenuBarWrapper("add");
-        menuBarWrapper.add("image", CardContext.builder()
+
+        var contextImage = CardContext.builder()
+                .cardContainer(cardContainer)
                 .component(picture)
-                .buttons(List.of(ButtonMini.builder()
-                        .icon(new Icon("lumo", "edit"))
-                        .build()))
-                .build()).add("examples", CardContext.builder()
-                .component(new StandardDefaultPicture())
+                .build();
+        contextImage.setButtons(List.of(ButtonMini.builder()
+                .icon(new Icon("lumo", "edit"))
+                .click(l -> {
+                    contextImage.setComponent(new ImageSearcher());
+                    contextImage.setButton(l.getSource());
+                    new EditCardCommand(contextImage).execute();
+                })
+                .build()));
+
+        MenuBarWrapper menuBarWrapper = new MenuBarWrapper("add");
+        menuBarWrapper.add("image", contextImage).add("examples", CardContext.builder()
+                .cardContainer(cardContainer)
+                .buttons(new ArrayList<>())
+                .component(new ExampleListBox())
+                .build()).add("audio", CardContext.builder()
+                .cardContainer(cardContainer)
+                .component(new AudioListBox())
+                .buttons(new ArrayList<>())
+                .build()).add("explanation", CardContext.builder()
+                .cardContainer(cardContainer)
+                .buttons(new ArrayList<>())
+                .component(CustomTextArea.builder().placeholder("translation...").fullWidth().build())
                 .build());
+
+        var save = new Button("save");
+        save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+        var footerLayout = new HorizontalLayout(menuBarWrapper, save);
+        footerLayout.setWidthFull();
+        footerLayout.setDefaultVerticalComponentAlignment(Alignment.CENTER);
+        footerLayout.setAlignItems(Alignment.CENTER);
+        cardContainer.setFooter(footerLayout);
+
+        //cardContainer.add(picture, Arrays.asList(b11, b22));
+        //cardContainer.add(new Span("22222222222"), new ArrayList<>());
+        //cardContainer.add(new Span("sdfdsf"), new ArrayList<>());
 
 
         layout.add(cardContainer);
-        //layout.add(slotBox);
-        layout.add(new VerticalLayout(buttonSave));
-        buttonSave.addClickListener(listener -> clickButton(slotId));
+        save.addClickListener(listener -> clickButton(slotId));
         add(layout);
     }
 
