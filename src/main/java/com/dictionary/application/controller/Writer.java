@@ -115,12 +115,6 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
         footerLayout.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         footerLayout.setAlignItems(Alignment.CENTER);
         cardContainer.setFooter(footerLayout);
-
-        //cardContainer.add(picture, Arrays.asList(b11, b22));
-        //cardContainer.add(new Span("22222222222"), new ArrayList<>());
-        //cardContainer.add(new Span("sdfdsf"), new ArrayList<>());
-
-
         layout.add(cardContainer);
         save.addClickListener(listener -> clickButton(slotId));
         add(layout);
