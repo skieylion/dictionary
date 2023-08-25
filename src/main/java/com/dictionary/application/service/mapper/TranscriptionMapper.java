@@ -3,10 +3,11 @@ package com.dictionary.application.service.mapper;
 import com.dictionary.application.domain.AudioItem;
 import com.dictionary.application.domain.Transcription;
 import com.dictionary.application.view.*;
+import com.dictionary.application.view.button.CustomButton;
+import com.dictionary.application.view.layout.FullHorizontalLayout;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.textfield.TextField;
 
-import java.awt.*;
 import java.util.Set;
 
 public class TranscriptionMapper {

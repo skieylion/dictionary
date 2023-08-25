@@ -1,4 +1,4 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.layout;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Span;

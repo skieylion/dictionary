@@ -1,6 +1,9 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.box;
 
 import com.dictionary.application.domain.ExampleItem;
+import com.dictionary.application.view.CustomTextField;
+import com.dictionary.application.view.layout.FullHorizontalLayout;
+import com.dictionary.application.view.button.CustomButton;
 import com.vaadin.flow.component.icon.VaadinIcon;
 
 import java.util.List;

@@ -6,9 +6,9 @@ import com.dictionary.application.domain.Size;
 import com.dictionary.application.domain.Slot;
 import com.dictionary.application.service.FilePropertyService;
 import com.dictionary.application.service.SlotService;
-import com.dictionary.application.view.CenterVerticalLayout;
-import com.dictionary.application.view.CustomButton;
-import com.dictionary.application.view.CustomVerticalLayout;
+import com.dictionary.application.view.layout.CenterVerticalLayout;
+import com.dictionary.application.view.button.CustomButton;
+import com.dictionary.application.view.layout.CustomVerticalLayout;
 import com.dictionary.application.view.SlotEditorForm;
 import com.dictionary.application.view.StandardDefaultPicture;
 import com.vaadin.flow.component.UI;
@@ -17,9 +17,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.router.*;
 
 import javax.annotation.security.PermitAll;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
 @Route(value = "/slots/:slotId/editor", layout = Home.class)

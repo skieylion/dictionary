@@ -1,19 +1,26 @@
 package com.dictionary.application.controller;
 
 import com.dictionary.application.domain.dto.CardDTO;
-import com.dictionary.application.service.EditCardCommand;
+import com.dictionary.application.service.command.EditCardCommand;
 import com.dictionary.application.service.Navigator;
 import com.dictionary.application.service.UnsplashService;
+import com.dictionary.application.service.handler.context.CardContextExampleHandler;
+import com.dictionary.application.service.handler.context.CardContextExplanationHandler;
+import com.dictionary.application.service.handler.context.CardContextImageHandler;
+import com.dictionary.application.service.handler.context.CardContextSoundHandler;
 import com.dictionary.application.service.validator.CardBoxValidator;
 import com.dictionary.application.view.*;
 import com.dictionary.application.domain.*;
 import com.dictionary.application.repository.SlotRepository;
-import com.dictionary.application.service.CardService;
-import com.vaadin.flow.component.Component;
+import com.dictionary.application.service.command.CardService;
+import com.dictionary.application.view.box.CardBox;
+import com.dictionary.application.view.box.ExampleBox;
+import com.dictionary.application.view.box.SoundBox;
+import com.dictionary.application.view.button.ButtonMini;
+import com.dictionary.application.view.button.CustomButton;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -24,14 +31,13 @@ import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteParameters;
 import com.vaadin.flow.router.RouterLayout;
-import com.vaadin.flow.server.Command;
 
 import javax.annotation.security.PermitAll;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 @Route(value = "/slots/:slotId/cards/writer", layout = Home.class)
 @PermitAll
@@ -65,6 +71,7 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
 
     private void draw(long slotId) {
         removeAll();
+
         var layout = new VerticalLayout();
         layout.setWidth(Size.PERCENT_50);
 
@@ -74,38 +81,18 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
         CardContainer cardContainer = new CardContainer();
         cardContainer.setHeader(tf);
         //new ImageSearcher()
-        var picture = new StandardDefaultPicture();
-        picture.setWidth(Size.PX_700);
-        picture.setHeight(Size.PX_450);
-
-
-        var contextImage = CardContext.builder()
-                .cardContainer(cardContainer)
-                .component(picture)
-                .build();
-        contextImage.setButtons(List.of(ButtonMini.builder()
-                .icon(new Icon("lumo", "edit"))
-                .click(l -> {
-                    contextImage.setComponent(new ImageSearcher());
-                    contextImage.setButton(l.getSource());
-                    new EditCardCommand(contextImage).execute();
-                })
-                .build()));
-
         MenuBarWrapper menuBarWrapper = new MenuBarWrapper("add");
-        menuBarWrapper.add("image", contextImage).add("examples", CardContext.builder()
-                .cardContainer(cardContainer)
-                .buttons(new ArrayList<>())
-                .component(new ExampleListBox())
-                .build()).add("audio", CardContext.builder()
-                .cardContainer(cardContainer)
-                .component(new AudioListBox())
-                .buttons(new ArrayList<>())
-                .build()).add("explanation", CardContext.builder()
-                .cardContainer(cardContainer)
-                .buttons(new ArrayList<>())
-                .component(CustomTextArea.builder().placeholder("translation...").fullWidth().build())
-                .build());
+
+        var cardContextImageHandler = new CardContextImageHandler();
+        var cardContextExampleHandler = new CardContextExampleHandler();
+        var cardContextSoundHandler = new CardContextSoundHandler();
+
+        cardContextImageHandler.setNext(cardContextExampleHandler);
+        cardContextExampleHandler.setNext(cardContextSoundHandler);
+        cardContextSoundHandler.setNext(new CardContextExplanationHandler());
+
+        cardContextImageHandler.handle(cardContainer, menuBarWrapper);
+
 
         var save = new Button("save");
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -115,6 +102,9 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
         footerLayout.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         footerLayout.setAlignItems(Alignment.CENTER);
         cardContainer.setFooter(footerLayout);
+        //cardContainer.add(picture, Arrays.asList(b11, b22));
+        //cardContainer.add(new Span("22222222222"), new ArrayList<>());
+        //cardContainer.add(new Span("sdfdsf"), new ArrayList<>());
         layout.add(cardContainer);
         save.addClickListener(listener -> clickButton(slotId));
         add(layout);

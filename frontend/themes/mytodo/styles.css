@@ -3,3 +3,12 @@
 .highlight {
   border: 1px solid red;
 }
+
+.hoverable-border-image {
+  transition: border 0.3s; // Плавное появление рамки
+border: 3px solid transparent; // Прозрачная рамка по умолчанию, чтобы избежать "прыгания" изображения при наведении
+}
+
+.hoverable-border-image:hover {
+  border: 3px solid red; // Появление красной рамки при наведении
+}

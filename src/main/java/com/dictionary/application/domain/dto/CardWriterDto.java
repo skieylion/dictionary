@@ -1,14 +1,10 @@
 package com.dictionary.application.domain.dto;
 
-import com.dictionary.application.domain.ElementType;
 import com.dictionary.application.domain.PictureFile;
-import com.dictionary.application.utils.AudioItemConverter;
-import com.dictionary.application.view.CardBox;
-import com.vaadin.flow.internal.Pair;
+import com.dictionary.application.view.box.CardBox;
 import lombok.Data;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 public class CardWriterDto {

@@ -2,8 +2,8 @@ package com.dictionary.application.view;
 
 import com.dictionary.application.domain.PictureFile;
 import com.dictionary.application.domain.Size;
+import com.dictionary.application.view.layout.VerticalHeaderLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import lombok.Getter;
 

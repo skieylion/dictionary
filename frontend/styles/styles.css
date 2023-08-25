@@ -1,0 +1,7 @@
+.hoverable-border-image {
+    border: 3px solid transparent; // Прозрачная рамка по умолчанию, чтобы избежать "прыгания" изображения при наведении
+}
+
+.hoverable-border-image-red {
+    border: 3px solid red; // Появление красной рамки при наведении
+}

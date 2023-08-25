@@ -1,17 +1,22 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.box;
 
 import com.dictionary.application.domain.*;
 import com.dictionary.application.domain.dto.TranscriptionDTO;
+import com.dictionary.application.view.CustomTextField;
+import com.dictionary.application.view.FileUploader;
+import com.dictionary.application.view.layout.FullHorizontalLayout;
+import com.dictionary.application.view.layout.FullVerticalLayout;
+import com.dictionary.application.view.SelectTranscriptionVariant;
+import com.dictionary.application.view.button.AudioButton;
+import com.dictionary.application.view.button.CustomButton;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AudioListBox extends ListBox {

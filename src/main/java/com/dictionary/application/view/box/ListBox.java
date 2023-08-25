@@ -1,4 +1,4 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.box;
 
 import com.dictionary.application.domain.ListBoxItem;
 import com.dictionary.application.domain.Size;

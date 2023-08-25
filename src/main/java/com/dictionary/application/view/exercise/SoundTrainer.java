@@ -3,15 +3,9 @@ package com.dictionary.application.view.exercise;
 import com.dictionary.application.domain.AudioFile;
 import com.dictionary.application.domain.Size;
 import com.dictionary.application.domain.Trainer;
-import com.dictionary.application.domain.Transcription;
-import com.dictionary.application.view.AudioButton;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.dictionary.application.view.button.AudioButton;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class SoundTrainer extends Trainer {
 

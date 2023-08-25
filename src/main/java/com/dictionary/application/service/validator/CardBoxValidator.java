@@ -1,6 +1,6 @@
 package com.dictionary.application.service.validator;
 
-import com.dictionary.application.view.CardBox;
+import com.dictionary.application.view.box.CardBox;
 import com.vaadin.flow.component.notification.Notification;
 
 

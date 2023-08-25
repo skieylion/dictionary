@@ -1,4 +1,4 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.button;
 
 import com.vaadin.flow.component.HtmlComponent;
 import com.vaadin.flow.component.UI;

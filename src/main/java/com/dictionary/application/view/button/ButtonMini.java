@@ -1,7 +1,6 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.button;
 
 import com.vaadin.flow.component.ClickEvent;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.Icon;

@@ -4,7 +4,7 @@ import com.dictionary.application.domain.Card;
 import com.dictionary.application.domain.Example;
 import com.dictionary.application.view.ButtonController;
 import com.dictionary.application.view.CardReader;
-import com.dictionary.application.view.CustomButton;
+import com.dictionary.application.view.button.CustomButton;
 import com.dictionary.application.view.Picture;
 import com.dictionary.application.view.StandardDefaultPicture;
 import com.vaadin.flow.component.button.Button;

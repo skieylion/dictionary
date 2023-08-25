@@ -1,24 +1,16 @@
 package com.dictionary.application.service;
 
-import com.dictionary.application.domain.AudioFile;
 import com.dictionary.application.domain.Card;
-import com.dictionary.application.domain.Example;
 import com.dictionary.application.domain.Trainer;
-import com.dictionary.application.domain.Transcription;
 import com.dictionary.application.view.ButtonController;
-import com.dictionary.application.view.CustomButton;
-import com.dictionary.application.view.exercise.ContextTrainer;
-import com.dictionary.application.view.exercise.AssociationTrainer;
-import com.dictionary.application.view.exercise.SoundTrainer;
+import com.dictionary.application.view.button.CustomButton;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;

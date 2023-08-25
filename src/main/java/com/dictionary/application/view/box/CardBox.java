@@ -1,37 +1,22 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.box;
 
-import com.dictionary.application.domain.AudioItem;
-import com.dictionary.application.domain.ElementType;
-import com.dictionary.application.domain.Example;
-import com.dictionary.application.domain.MediaFile;
 import com.dictionary.application.domain.PictureFile;
 import com.dictionary.application.domain.Size;
-import com.dictionary.application.domain.Slot;
-import com.dictionary.application.domain.Transcription;
 import com.dictionary.application.domain.dto.CardDTO;
 import com.dictionary.application.domain.dto.TranscriptionDTO;
+import com.dictionary.application.view.CustomTextArea;
+import com.dictionary.application.view.CustomTextField;
+import com.dictionary.application.view.PictureLoader;
+import com.dictionary.application.view.layout.VerticalHeaderLayout;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.combobox.MultiSelectComboBox;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.page.PendingJavaScriptResult;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.internal.Pair;
 import lombok.Data;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 @Data
 public class CardBox extends VerticalLayout {

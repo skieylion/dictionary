@@ -1,4 +1,4 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.layout;
 
 import com.dictionary.application.domain.Size;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;

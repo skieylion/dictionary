@@ -1,4 +1,4 @@
-package com.dictionary.application.service;
+package com.dictionary.application.service.command;
 
 import com.dictionary.application.domain.CardContext;
 

@@ -1,9 +1,7 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.button;
 
 
-import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.icon.Icon;
@@ -30,6 +28,13 @@ public class CustomButton {
     public CustomButton icon(VaadinIcon icon) {
         if (Objects.nonNull(icon)) {
             button.setIcon(new Icon(icon));
+        }
+        return this;
+    }
+
+    public CustomButton icon(Icon icon) {
+        if (Objects.nonNull(icon)) {
+            button.setIcon(icon);
         }
         return this;
     }

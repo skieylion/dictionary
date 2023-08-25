@@ -1,7 +1,7 @@
-package com.dictionary.application.service;
+package com.dictionary.application.service.command;
 
 import com.dictionary.application.domain.CardContext;
-import com.dictionary.application.view.ButtonMini;
+import com.dictionary.application.view.button.ButtonMini;
 import com.vaadin.flow.component.icon.Icon;
 
 import java.util.ArrayList;

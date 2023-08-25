@@ -1,5 +1,6 @@
 package com.dictionary.application;
 
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
@@ -20,6 +21,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @NpmPackage(value = "line-awesome", version = "1.3.0")
 @MapperScan(basePackages = "com.dictionary.application.repository.batis")
 @EnableFeignClients
+@CssImport("./styles/styles.css")
 public class Application implements AppShellConfigurator {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

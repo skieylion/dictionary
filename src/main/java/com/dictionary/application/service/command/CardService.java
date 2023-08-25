@@ -1,10 +1,11 @@
-package com.dictionary.application.service;
+package com.dictionary.application.service.command;
 
 import com.dictionary.application.domain.*;
 import com.dictionary.application.domain.dto.CardDTO;
 import com.dictionary.application.domain.dto.CardWriterDto;
 import com.dictionary.application.domain.dto.TranscriptionDTO;
 import com.dictionary.application.repository.*;
+import com.dictionary.application.service.FilePropertyService;
 import com.dictionary.application.service.mapper.CardMapper;
 import lombok.AllArgsConstructor;
 import org.checkerframework.checker.nullness.Opt;

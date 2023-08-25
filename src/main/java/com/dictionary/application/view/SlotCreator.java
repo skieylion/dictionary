@@ -2,6 +2,7 @@ package com.dictionary.application.view;
 
 import com.dictionary.application.domain.Size;
 import com.dictionary.application.domain.dto.SlotCreatorDto;
+import com.dictionary.application.view.button.CustomButton;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.VaadinIcon;

@@ -3,18 +3,14 @@ package com.dictionary.application.view;
 import com.dictionary.application.domain.MediaType;
 import com.dictionary.application.domain.PictureFile;
 import com.dictionary.application.domain.Size;
+import com.dictionary.application.view.layout.FullVerticalLayout;
+import com.dictionary.application.view.layout.VerticalBorderLayout;
 import com.vaadin.flow.component.ClientCallable;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.tabs.TabSheetVariant;
-import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.component.textfield.TextField;
 
 import java.io.IOException;
@@ -22,14 +18,12 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Consumer;
 
 public class PictureLoader extends VerticalLayout {
 

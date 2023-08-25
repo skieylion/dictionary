@@ -1,6 +1,7 @@
 package com.dictionary.application.view;
 
 import com.dictionary.application.domain.Size;
+import com.dictionary.application.view.layout.FullHorizontalLayout;
 import com.vaadin.flow.component.button.Button;
 
 public class ButtonMenu extends FullHorizontalLayout {

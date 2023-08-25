@@ -1,6 +1,6 @@
 package com.dictionary.application.domain;
 
-import com.dictionary.application.view.AudioButton;
+import com.dictionary.application.view.button.AudioButton;
 import com.dictionary.application.view.FileUploader;
 import com.dictionary.application.view.SelectTranscriptionVariant;
 import com.vaadin.flow.component.button.Button;

@@ -5,33 +5,18 @@ import com.dictionary.application.repository.batis.SlotStatRepository;
 import com.dictionary.application.service.Navigator;
 import com.dictionary.application.service.SlotService;
 import com.dictionary.application.service.mapper.SlotMapper;
-import com.dictionary.application.view.ButtonMini;
-import com.dictionary.application.view.CardContainer;
-import com.dictionary.application.view.CustomButton;
-import com.dictionary.application.view.ImageSearcher;
+import com.dictionary.application.view.button.CustomButton;
 import com.dictionary.application.view.PictureLoader;
-import com.dictionary.application.view.VerticalHeaderLayout;
+import com.dictionary.application.view.layout.VerticalHeaderLayout;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.select.Select;
-import com.vaadin.flow.component.select.SelectVariant;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
-import com.vaadin.flow.theme.lumo.Lumo;
-import com.vaadin.flow.theme.lumo.LumoIcon;
 import org.hibernate.Session;
 
 import javax.annotation.security.PermitAll;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Route(value = "/slots/new", layout = Home.class)
 @PermitAll

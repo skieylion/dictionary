@@ -1,13 +1,13 @@
 package com.dictionary.application.service;
 
 import com.dictionary.application.domain.Card;
-import com.dictionary.application.domain.FileProperty;
 import com.dictionary.application.domain.MediaFile;
 import com.dictionary.application.domain.Slot;
 import com.dictionary.application.domain.SlotStat;
 import com.dictionary.application.repository.CardAndSlotRepository;
 import com.dictionary.application.repository.SlotRepository;
 import com.dictionary.application.repository.batis.SlotStatRepository;
+import com.dictionary.application.service.command.CardService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 

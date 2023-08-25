@@ -3,13 +3,13 @@ package com.dictionary.application.view;
 import com.dictionary.application.domain.PictureFile;
 import com.dictionary.application.domain.Size;
 import com.dictionary.application.domain.Transcription;
+import com.dictionary.application.view.button.AudioButton;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 
 public class CardReader extends VerticalLayout {

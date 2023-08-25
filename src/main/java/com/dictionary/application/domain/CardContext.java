@@ -20,9 +20,12 @@ public class CardContext {
     private CardContainer cardContainer;
     private MenuItem item;
     private Component component;
+    private Component defaultComponent;
     private List<Button> buttons;
+    private List<Button> defaultButtons;
     private Button button;
     private Container container;
+    private String title;
 
 
     @Getter

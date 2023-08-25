@@ -68,7 +68,7 @@ public class CardContainer extends VerticalLayout {
         var layoutComponent = createLine(left, right);
         add(layoutComponent);
         add(last);
-        return new CardContext.Container(left, right, layoutComponent);
+        return new CardContext.Container(layout, right, layoutComponent);
     }
 
     public void drop(Component component) {

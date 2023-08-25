@@ -2,13 +2,12 @@ package com.dictionary.application.view;
 
 import com.dictionary.application.domain.PictureFile;
 import com.dictionary.application.domain.Size;
+import com.dictionary.application.view.button.CustomButton;
+import com.dictionary.application.view.layout.VerticalHeaderLayout;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.Getter;
 
 public class CardMiniReader extends VerticalHeaderLayout {

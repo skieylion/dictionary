@@ -1,7 +1,9 @@
-package com.dictionary.application.service;
+package com.dictionary.application.service.command;
 
 import com.dictionary.application.domain.CardContext;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
+
+import java.util.Optional;
 
 public class DeleteCardCommand extends CardCommand {
     private final ConfirmDialog dialog;
@@ -15,6 +17,10 @@ public class DeleteCardCommand extends CardCommand {
         dialog.addConfirmListener(event -> {
             context.getItem().setEnabled(true);
             context.getCardContainer().drop(context.getContainer().getLayout());
+            Optional.ofNullable(context.getDefaultComponent())
+                    .ifPresent(context::setComponent);
+            Optional.ofNullable(context.getDefaultButtons())
+                    .ifPresent(context::setButtons);
         });
     }
 

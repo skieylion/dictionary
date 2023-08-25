@@ -2,6 +2,7 @@ package com.dictionary.application.view;
 
 import com.dictionary.application.domain.CardVariant;
 import com.dictionary.application.domain.Size;
+import com.dictionary.application.view.layout.FullVerticalLayout;
 import com.vaadin.flow.component.select.Select;
 
 import java.util.ArrayList;
