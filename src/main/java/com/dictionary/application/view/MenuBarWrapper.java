@@ -16,19 +16,17 @@ public class MenuBarWrapper extends MenuBar {
     public MenuBarWrapper(String label) {
         super();
         addThemeVariants(MenuBarVariant.LUMO_ICON, MenuBarVariant.LUMO_PRIMARY);
-        menuItem = addItem(label);
-        subItems = addItem(new Icon(VaadinIcon.CHEVRON_DOWN)).getSubMenu();
+        menuItem = super.addItem(label);
+        subItems = super.addItem(new Icon(VaadinIcon.CHEVRON_DOWN)).getSubMenu();
     }
 
     public MenuBarWrapper() {
         this("");
     }
 
-    public MenuBarWrapper add(String label, CardContext context) {
-        var item = subItems.addItem(label);
-        context.setItem(item);
-        item.addClickListener(listener -> new NewCardCommand(context).execute());
-        return this;
+    @Override
+    public MenuItem addItem(String label) {
+        return subItems.addItem(label);
     }
 
     public void setTitle(String label) {

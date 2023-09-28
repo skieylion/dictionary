@@ -1,7 +1,8 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.slot;
 
 import com.dictionary.application.domain.PictureFile;
 import com.dictionary.application.domain.Size;
+import com.dictionary.application.view.PictureLoader;
 import com.dictionary.application.view.layout.VerticalHeaderLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;

@@ -17,7 +17,7 @@ public class EditCardCommand extends CardCommand {
         var left = context.getContainer().getLeftLayout();
         left.removeAll();
         left.add(context.getComponent());
-        var right = context.getContainer().getRightLayout();
+        var right = context.getContainer().getUpLayout();
         var editButton = context.getButton();
         var buttonUndo = ButtonMini.builder().icon(new Icon("lumo", "undo"))
                 .click(listener -> {

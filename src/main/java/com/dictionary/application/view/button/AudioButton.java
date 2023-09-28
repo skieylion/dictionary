@@ -1,5 +1,6 @@
 package com.dictionary.application.view.button;
 
+import com.dictionary.application.domain.AudioFile;
 import com.dictionary.application.domain.MediaFile;
 import com.vaadin.flow.component.HtmlComponent;
 import com.vaadin.flow.component.UI;
@@ -10,6 +11,7 @@ import com.vaadin.flow.server.AbstractStreamResource;
 import com.vaadin.flow.server.StreamResource;
 
 import java.io.ByteArrayInputStream;
+import java.util.Base64;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,7 +21,7 @@ public class AudioButton extends Button {
     private final String js = "document.getElementById('" + id + "').play()";
     private MediaFile file;
 
-    public AudioButton(MediaFile file) {
+    public AudioButton(AudioFile file) {
         this();
         setFile(file);
     }

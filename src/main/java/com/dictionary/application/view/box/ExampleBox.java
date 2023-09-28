@@ -18,6 +18,7 @@ public class ExampleBox extends VerticalLayout {
 
     public ExampleBox() {
         setMargin(false);
+        setPadding(false);
         addExample();
     }
 
@@ -47,6 +48,17 @@ public class ExampleBox extends VerticalLayout {
             var layout = (HorizontalLayout) getComponentAt(i);
             var textField = (TextField) layout.getComponentAt(0);
             examples.add(textField.getValue());
+        }
+        return examples;
+    }
+
+    public List<TextField> getTextFieldsOfExamples() {
+        List<TextField> examples = new ArrayList<>();
+        int size = getComponentCount();
+        for (int i = 0; i < size; i++) {
+            var layout = (HorizontalLayout) getComponentAt(i);
+            var textField = (TextField) layout.getComponentAt(0);
+            examples.add(textField);
         }
         return examples;
     }

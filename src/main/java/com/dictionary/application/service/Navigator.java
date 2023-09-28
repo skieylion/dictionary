@@ -45,12 +45,9 @@ public enum Navigator {
     public static Tabs createMenu(int slotsCount) {
         tabs = new Tabs();
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
-        tabs.add(new Tab(new Span("drafts (4)")));
-        tabs.add(createNewSlot(), createTabSlots(slotsCount), new Tab(new Span("slot hub")));
+        tabs.add(createNewSlot(), createTabSlots(slotsCount), new Tab(new Span("hub")));
         tabs.add(new Tab(new Span("hints (10)")));
-        tabs.add(new Tab(new Span("materials (10)")));
         tabs.add(new Tab(new Span("settings")));
-        tabs.add(new Tab(new Span("profile")));
         tabs.add(new Tab(new Span("tariff (free)")));
         tabs.addSelectedChangeListener(event -> {
             event.getSelectedTab().getId().ifPresent(id -> Navigator.navigate(Navigator.valueOf(id)));
@@ -68,13 +65,13 @@ public enum Navigator {
         Span counter = new Span(String.format(" (%d) ", count));
         //counter.getElement().getThemeList().add("badge error primary pill small");
         counter.getStyle().set("color", "red");
-        var tabSlots = new Tab(new Span("my slots "), counter);
+        var tabSlots = new Tab(new Span("slots "), counter);
         tabSlots.setId(Navigator.SLOTS.name());
         return tabSlots;
     }
 
     private static Tab createNewSlot() {
-        var tabNewSlot = new Tab(new Span("new slot"));
+        var tabNewSlot = new Tab(new Span("[new slot]"));
         tabNewSlot.setId(Navigator.NEW_SLOT.name());
         return tabNewSlot;
     }

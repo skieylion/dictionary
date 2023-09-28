@@ -13,7 +13,9 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -68,6 +70,8 @@ public class AudioListBox extends ListBox {
                 .map(ext -> "." + ext)
                 .collect(Collectors.joining(",")));
         audioItem.getButtonUpload().addFileUploaderListener(file -> {
+            var dataSource = new String(file.getBytes(), StandardCharsets.UTF_8);
+            System.out.println(dataSource.substring(0, 50));
             audioItem.getAudioPlayButton().setFile(file);
             audioItem.getAudioRemoveButton().setEnabled(true);
         });

@@ -10,12 +10,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Setter
 @Getter
-@Builder
+@SuperBuilder
 public class CardContext {
     private CardContainer cardContainer;
     private MenuItem item;
@@ -26,13 +27,14 @@ public class CardContext {
     private Button button;
     private Container container;
     private String title;
-
+    private CardContextType contextType;
+    private ContextContainer contextContainer;
 
     @Getter
     @AllArgsConstructor
     public static class Container {
         private VerticalLayout leftLayout;
-        private VerticalLayout rightLayout;
-        private HorizontalLayout layout;
+        private HorizontalLayout upLayout;
+        private VerticalLayout layout;
     }
 }

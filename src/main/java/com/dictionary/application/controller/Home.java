@@ -41,34 +41,6 @@ public class Home extends AppLayout implements RouterLayout {
         menu.getStyle().set("height", "39%");
         addToDrawer(menu);
 
-        var vlOptions = new VerticalLayout();
-        vlOptions.setHorizontalComponentAlignment(FlexComponent.Alignment.START);
-        vlOptions.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
-        vlOptions.getStyle().set("height", "44%");
-        vlOptions.getStyle().set("border-top", "1px solid #36485F");
-
-
-        var checkbox = new Checkbox();
-        checkbox.setLabel("dark");
-        checkbox.setReadOnly(true);
-        checkbox.setValue(true);
-        vlOptions.add(new HorizontalLayout(checkbox));
-        addToDrawer(vlOptions);
-
-        // Создаем новые компоненты
-        var vl = new VerticalLayout();
-        vl.add(new TextField());
-        vl.add(new Button("add draft"));
-        vl.getStyle().set("border-top", "1px solid #36485F");
-
-        // Выравнивание по центру
-        vl.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
-
-        // Распределение пространства, чтобы элементы начинались снизу
-        vl.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-        vl.getStyle().set("height", "14%");
-        addToDrawer(vl);
-
         Select<String> select = new Select<>();
         select.addThemeVariants(SelectVariant.LUMO_SMALL);
         select.setWidth("70px");

@@ -1,6 +1,7 @@
 package com.dictionary.application.controller;
 
 import com.dictionary.application.domain.Card;
+import com.dictionary.application.domain.CardParams;
 import com.dictionary.application.domain.CardRemember;
 import com.dictionary.application.domain.Example;
 import com.dictionary.application.domain.PictureFile;

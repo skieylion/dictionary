@@ -1,6 +1,5 @@
 package com.dictionary.application.controller;
 
-import com.dictionary.application.domain.FileProperty;
 import com.dictionary.application.domain.PictureFile;
 import com.dictionary.application.domain.Slot;
 import com.dictionary.application.domain.SlotStat;
@@ -11,8 +10,8 @@ import com.dictionary.application.service.Navigator;
 import com.dictionary.application.service.mapper.SlotMapper;
 import com.dictionary.application.repository.batis.SlotStatRepository;
 import com.dictionary.application.service.SlotService;
-import com.dictionary.application.view.SlotCreator;
-import com.dictionary.application.view.SlotReader;
+import com.dictionary.application.view.slot.SlotCreator;
+import com.dictionary.application.view.slot.SlotReader;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;

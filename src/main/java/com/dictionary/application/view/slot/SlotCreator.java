@@ -1,7 +1,9 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.slot;
 
 import com.dictionary.application.domain.Size;
 import com.dictionary.application.domain.dto.SlotCreatorDto;
+import com.dictionary.application.view.ComponentBuilder;
+import com.dictionary.application.view.FileUploader;
 import com.dictionary.application.view.button.CustomButton;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;

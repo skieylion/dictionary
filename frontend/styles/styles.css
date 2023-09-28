@@ -5,3 +5,11 @@
 .hoverable-border-image-red {
     border: 3px solid red; // Появление красной рамки при наведении
 }
+
+.hidden-upload [part="primary-buttons"] {
+    display: none !important;
+}
+
+.hidden-upload [part="drop-label"] {
+    display: none !important;
+}

@@ -2,28 +2,37 @@ package com.dictionary.application.service.handler.context;
 
 
 import com.dictionary.application.domain.CardContext;
+import com.dictionary.application.domain.CardContextType;
+import com.dictionary.application.domain.CardImageContext;
 import com.dictionary.application.domain.Size;
+import com.dictionary.application.service.UnsplashService;
 import com.dictionary.application.service.command.EditCardCommand;
 import com.dictionary.application.view.ImageSearcher;
-import com.dictionary.application.view.MenuBarWrapper;
-import com.dictionary.application.view.MiniDefaultPicture;
 import com.dictionary.application.view.Picture;
 import com.dictionary.application.view.StandardDefaultPicture;
 import com.dictionary.application.view.button.ButtonMini;
 import com.vaadin.flow.component.icon.Icon;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
-import java.util.Random;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
-public class CardContextImageHandler extends CardContextBaseHandler {
+public class CardContextImageCreator extends CardContextBaseCreator {
+
+    private final UnsplashService unsplashService;
+
+    public CardContextImageCreator(UnsplashService unsplashService) {
+        this.unsplashService = unsplashService;
+    }
+
     @Override
-    CardContext context() {
+    CardContext createContext() {
         Picture picture = createPicture();
         ImageSearcher imageSearcher = createImageSearcher(picture);
-        CardContext contextImage = CardContext.builder().title("image").component(picture).build();
+        CardImageContext contextImage = CardImageContext.builder()
+                .title("image")
+                .component(picture)
+                .picture(picture)
+                .build();
         contextImage.setDefaultComponent(picture);
         contextImage.setButtons(List.of(ButtonMini.builder()
                 .icon(new Icon("lumo", "edit"))
@@ -34,6 +43,7 @@ public class CardContextImageHandler extends CardContextBaseHandler {
                 })
                 .build()));
         contextImage.setDefaultButtons(contextImage.getButtons());
+        contextImage.setContextType(CardContextType.IMAGE);
         return contextImage;
     }
 
@@ -46,12 +56,9 @@ public class CardContextImageHandler extends CardContextBaseHandler {
 
     private ImageSearcher createImageSearcher(Picture picture) {
         ImageSearcher imageSearcher = new ImageSearcher();
-        imageSearcher.changeText(text -> {
-            List<Picture> pictures = new ArrayList<>();
-            IntStream.range(1, 10).limit(new Random().nextInt(10) + 4)
-                    .forEach(i -> pictures.add(new MiniDefaultPicture()));
-            imageSearcher.setPictures(pictures);
-        });
+        imageSearcher.changeText(text -> imageSearcher.setPictures(unsplashService
+                .findPictures(text).stream()
+                .map(Picture::new).collect(Collectors.toList())));
         imageSearcher.setSelectConsumer(picture::setPictureFile);
         imageSearcher.setUnselectConsumer(pictureFile -> picture
                 .setPictureFile(new StandardDefaultPicture().getPictureFile()));

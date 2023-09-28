@@ -1,8 +1,11 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.slot;
 
 
 import com.dictionary.application.domain.Size;
 import com.dictionary.application.domain.SlotStat;
+import com.dictionary.application.view.ComponentBuilder;
+import com.dictionary.application.view.MiniDefaultPicture;
+import com.dictionary.application.view.Picture;
 import com.dictionary.application.view.button.CustomButton;
 import com.dictionary.application.view.layout.VerticalHeaderLayout;
 import com.vaadin.flow.component.button.Button;

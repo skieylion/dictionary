@@ -1,27 +1,24 @@
 package com.dictionary.application.controller;
 
 import com.dictionary.application.domain.dto.CardDTO;
-import com.dictionary.application.service.command.EditCardCommand;
+import com.dictionary.application.service.CardValidator;
 import com.dictionary.application.service.Navigator;
 import com.dictionary.application.service.UnsplashService;
-import com.dictionary.application.service.handler.context.CardContextExampleHandler;
-import com.dictionary.application.service.handler.context.CardContextExplanationHandler;
-import com.dictionary.application.service.handler.context.CardContextImageHandler;
-import com.dictionary.application.service.handler.context.CardContextSoundHandler;
+import com.dictionary.application.service.handler.context.CardContextExampleCreator;
+import com.dictionary.application.service.handler.context.CardContextExplanationCreator;
+import com.dictionary.application.service.handler.context.CardContextImageCreator;
+import com.dictionary.application.service.handler.context.CardContextSoundCreator;
 import com.dictionary.application.service.validator.CardBoxValidator;
 import com.dictionary.application.view.*;
 import com.dictionary.application.domain.*;
 import com.dictionary.application.repository.SlotRepository;
 import com.dictionary.application.service.command.CardService;
 import com.dictionary.application.view.box.CardBox;
-import com.dictionary.application.view.box.ExampleBox;
-import com.dictionary.application.view.box.SoundBox;
-import com.dictionary.application.view.button.ButtonMini;
 import com.dictionary.application.view.button.CustomButton;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
-import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -34,10 +31,9 @@ import com.vaadin.flow.router.RouterLayout;
 
 import javax.annotation.security.PermitAll;
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 @Route(value = "/slots/:slotId/cards/writer", layout = Home.class)
 @PermitAll
@@ -71,7 +67,6 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
 
     private void draw(long slotId) {
         removeAll();
-
         var layout = new VerticalLayout();
         layout.setWidth(Size.PERCENT_50);
 
@@ -83,15 +78,18 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
         //new ImageSearcher()
         MenuBarWrapper menuBarWrapper = new MenuBarWrapper("add");
 
-        var cardContextImageHandler = new CardContextImageHandler();
-        var cardContextExampleHandler = new CardContextExampleHandler();
-        var cardContextSoundHandler = new CardContextSoundHandler();
+        var cardContextImageHandler = new CardContextImageCreator(unsplashService);
+        var cardContextExampleHandler = new CardContextExampleCreator();
+        var cardContextSoundHandler = new CardContextSoundCreator();
 
         cardContextImageHandler.setNext(cardContextExampleHandler);
         cardContextExampleHandler.setNext(cardContextSoundHandler);
-        cardContextSoundHandler.setNext(new CardContextExplanationHandler());
+        cardContextSoundHandler.setNext(new CardContextExplanationCreator());
 
-        cardContextImageHandler.handle(cardContainer, menuBarWrapper);
+
+        Deque<CardContext> contextDeque = new ArrayDeque<>();
+        ContextContainer contextContainer = new ContextContainer(cardContainer, menuBarWrapper, contextDeque);
+        cardContextImageHandler.handle(contextContainer);
 
 
         var save = new Button("save");
@@ -106,7 +104,11 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
         //cardContainer.add(new Span("22222222222"), new ArrayList<>());
         //cardContainer.add(new Span("sdfdsf"), new ArrayList<>());
         layout.add(cardContainer);
-        save.addClickListener(listener -> clickButton(slotId));
+        save.addClickListener(listener -> {
+            if (CardValidator.validate(contextDeque))
+                clickButton(slotId);
+            else Notification.show("Not valid card");
+        });
         add(layout);
     }
 
@@ -117,12 +119,10 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
     }
 
     private void clickButton(long slotId) {
-        if (new CardBoxValidator(cardBox).validate()) {
-            CardDTO cardDTO = cardBox.getCard();
-            cardService.insert(cardDTO, slotRepository.findAllById(List.of(slotId)));
-            openDialog("The card is created");
-            Navigator.WRITER.refresh();
-        }
+        CardDTO cardDTO = cardBox.getCard();
+        cardService.insert(cardDTO, slotRepository.findAllById(List.of(slotId)));
+        openDialog("The card is created");
+        Navigator.WRITER.refresh();
     }
 
 

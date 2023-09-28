@@ -1,4 +1,4 @@
-package com.dictionary.application.view;
+package com.dictionary.application.view.slot;
 
 import com.dictionary.application.domain.Size;
 import com.dictionary.application.view.layout.FullVerticalLayout;

@@ -1,41 +1,68 @@
 package com.dictionary.application.view.button;
 
+import com.dictionary.application.domain.MediaFile;
+import com.dictionary.application.utils.MediaBase64ToMediaFileConverter;
+import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.HtmlComponent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.upload.Upload;
-import elemental.json.JsonArray;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 public class FileButton extends Button {
-    private final HtmlComponent input = new HtmlComponent("input");
-    private final String id = UUID.randomUUID().toString();
-    private final String js = "document.getElementById('" + id + "').click()";
+    private static final String LOAD_JS;
 
-    //private final Upload uploader = new Upload();
+    static {
+        try (InputStream is = FileButton.class.getResourceAsStream("/loading.js")) {
+            LOAD_JS = new String(Objects.requireNonNull(is).readAllBytes(), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new RuntimeException("loading.js is not loaded", e);
+        }
+    }
+
+    private final HtmlComponent fileInput = new HtmlComponent("input");
+    private Consumer<MediaFile> mediaFileConsumer;
 
     public FileButton() {
-        input.setId(id);
-        input.getElement().setAttribute("type", "file");
-        input.getElement().getStyle().set("display", "none");
-        setIcon(new Icon(VaadinIcon.PLAY));
+        String fileId = UUID.randomUUID().toString();
+        fileInput.setId(fileId);
+        fileInput.getElement().setAttribute("type", "file");
+        fileInput.getElement().getStyle().set("display", "none");
+        String hiddenId = UUID.randomUUID().toString();
+        HtmlComponent hiddenInput = new HtmlComponent("input");
+        hiddenInput.setId(hiddenId);
+        hiddenInput.getElement().setAttribute("type", "hidden");
+        setIcon(new Icon(VaadinIcon.PAPERCLIP));
+        var script = LOAD_JS.replaceAll("\\{fileId}", fileId)
+                .replaceAll("\\{hiddenId}", hiddenId);
+        addClickListener(event -> UI.getCurrent().getPage()
+                .executeJs(script, this.getElement()));
+        UI.getCurrent().add(fileInput, hiddenInput);
+    }
 
-        final String elementFiles = "files";
+    public FileButton(String accept) {
+        this();
+        fileInput.getElement().setAttribute("accept", accept);
+    }
 
-
-
-
-
-
-        addClickListener(event -> {
-            UI.getCurrent().getPage().executeJs(js);
-            System.out.println(input.getElement().getAttribute("files"));
-            System.out.println(input.getElement().getAttribute("src"));
+    @ClientCallable
+    public void receiveFile(String dataSource) {
+        Optional.ofNullable(mediaFileConsumer).ifPresent(consumer -> {
+            var file = MediaBase64ToMediaFileConverter.convertToMediaFile(dataSource);
+            consumer.accept(file);
         });
-        UI.getCurrent().add(input);
-        //UI.getCurrent().add(uploader);
+    }
+
+    public void setFileReceiver(Consumer<MediaFile> consumer) {
+        mediaFileConsumer = consumer;
     }
 }

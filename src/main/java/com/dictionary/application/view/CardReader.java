@@ -1,5 +1,6 @@
 package com.dictionary.application.view;
 
+import com.dictionary.application.domain.AudioFile;
 import com.dictionary.application.domain.PictureFile;
 import com.dictionary.application.domain.Size;
 import com.dictionary.application.domain.Transcription;
@@ -42,7 +43,7 @@ public class CardReader extends VerticalLayout {
     private static void createTranscriptions(HorizontalLayout header, List<Transcription> transcriptions) {
         for (var transcription : transcriptions) {
             if (Objects.nonNull(transcription.getFile())) {
-                var audioButton = new AudioButton(transcription.getFile());
+                var audioButton = new AudioButton((AudioFile) transcription.getFile());
                 audioButton.setTooltipText(transcription.getValue());
                 header.add(audioButton);
             }

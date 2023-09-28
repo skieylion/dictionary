@@ -9,7 +9,7 @@ import com.dictionary.application.service.SlotService;
 import com.dictionary.application.view.layout.CenterVerticalLayout;
 import com.dictionary.application.view.button.CustomButton;
 import com.dictionary.application.view.layout.CustomVerticalLayout;
-import com.dictionary.application.view.SlotEditorForm;
+import com.dictionary.application.view.slot.SlotEditorForm;
 import com.dictionary.application.view.StandardDefaultPicture;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
