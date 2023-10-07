@@ -1,6 +1,7 @@
 package com.dictionary.application.controller;
 
 import com.dictionary.application.domain.dto.CardDTO;
+import com.dictionary.application.repository.ExampleRepository;
 import com.dictionary.application.service.CardValidator;
 import com.dictionary.application.service.Navigator;
 import com.dictionary.application.service.UnsplashService;
@@ -8,7 +9,6 @@ import com.dictionary.application.service.handler.context.CardContextExampleCrea
 import com.dictionary.application.service.handler.context.CardContextExplanationCreator;
 import com.dictionary.application.service.handler.context.CardContextImageCreator;
 import com.dictionary.application.service.handler.context.CardContextSoundCreator;
-import com.dictionary.application.service.validator.CardBoxValidator;
 import com.dictionary.application.view.*;
 import com.dictionary.application.domain.*;
 import com.dictionary.application.repository.SlotRepository;
@@ -45,6 +45,8 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
     }
 
     private final CardService cardService;
+    private final ExampleRepository exampleRepository;
+
     private final CardBox cardBox;
     private final Button buttonSave;
     //private final SlotBox slotBox;
@@ -52,8 +54,9 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
     private final SlotRepository slotRepository;
 
 
-    public Writer(CardService cardService, SlotRepository slotRepository, UnsplashService unsplashService) {
+    public Writer(CardService cardService, ExampleRepository exampleRepository, SlotRepository slotRepository, UnsplashService unsplashService) {
         this.cardService = cardService;
+        this.exampleRepository = exampleRepository;
         this.unsplashService = unsplashService;
         this.slotRepository = slotRepository;
         cardBox = new CardBox();
@@ -66,6 +69,9 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
     }
 
     private void draw(long slotId) {
+
+        cardService.deleteByCardId(45308L);
+
         removeAll();
         var layout = new VerticalLayout();
         layout.setWidth(Size.PERCENT_50);

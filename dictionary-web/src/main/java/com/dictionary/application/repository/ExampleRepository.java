@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExampleRepository extends JpaRepository<Example, Long> {
     @Modifying
-    @Query("delete from Example e where e.card.id = :cardId")
-    void deleteByCardId(@Param("cardId") long cardId);
+    @Query("delete from Example e where e.cardId = ?1")
+    void deleteByCardId(Long cardId);
 }

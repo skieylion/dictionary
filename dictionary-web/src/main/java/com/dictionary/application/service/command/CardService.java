@@ -164,4 +164,14 @@ public class CardService {
                 .peek(card -> cardAndSlotRepository.removeByCardId(card.getId()))
                 .forEach(cardRepository::delete);
     }
+
+    @Transactional
+    public void deleteByCardId(long cardId) {
+        exampleRepository.deleteByCardId(cardId);
+        Card card = cardRepository.findById(cardId).get();
+        Example example = new Example();
+        example.setText(String.valueOf(new Random().nextInt()));
+        example.setCard(card);
+        exampleRepository.save(example);
+    }
 }

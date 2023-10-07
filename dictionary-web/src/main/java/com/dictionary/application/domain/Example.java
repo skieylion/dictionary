@@ -27,6 +27,9 @@ public class Example {
     @JsonIgnore
     private Card card;
 
+    @Column(name = "cardId", insertable = false, updatable = false)
+    private Long cardId;
+
     @Override
     public boolean equals(Object obj) {
         Example example = (Example) obj;
