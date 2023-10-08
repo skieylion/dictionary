@@ -1,8 +1,8 @@
 package com.dictionary.web.view.slot;
 
 
-import com.dictionary.web.domain.Size;
-import com.dictionary.web.domain.SlotStat;
+import com.dictionary.core.domain.Size;
+import com.dictionary.core.domain.SlotStat;
 import com.dictionary.web.view.ComponentBuilder;
 import com.dictionary.web.view.MiniDefaultPicture;
 import com.dictionary.web.view.Picture;

@@ -1,6 +1,8 @@
 package com.dictionary.web.view.box;
 
-import com.dictionary.web.domain.*;
+import com.dictionary.web.domain.AudioItem;
+import com.dictionary.core.domain.MediaType;
+import com.dictionary.core.domain.Size;
 import com.dictionary.web.domain.dto.TranscriptionDTO;
 import com.dictionary.web.view.CustomTextField;
 import com.dictionary.web.view.FileUploader;

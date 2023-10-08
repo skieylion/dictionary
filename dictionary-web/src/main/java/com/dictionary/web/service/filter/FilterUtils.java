@@ -1,7 +1,7 @@
 package com.dictionary.web.service.filter;
 
-import com.dictionary.web.domain.Example;
-import com.dictionary.web.domain.Transcription;
+import com.dictionary.core.domain.Example;
+import com.dictionary.core.domain.Transcription;
 
 import java.util.Objects;
 import java.util.Set;

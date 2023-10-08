@@ -1,11 +1,11 @@
 package com.dictionary.web.service;
 
-import com.dictionary.web.domain.AudioFile;
-import com.dictionary.web.domain.Card;
-import com.dictionary.web.domain.DefaultAudioFile;
-import com.dictionary.web.domain.Example;
+import com.dictionary.core.domain.AudioFile;
+import com.dictionary.core.domain.Card;
+import com.dictionary.core.domain.DefaultAudioFile;
+import com.dictionary.core.domain.Example;
 import com.dictionary.web.domain.Trainer;
-import com.dictionary.web.domain.Transcription;
+import com.dictionary.core.domain.Transcription;
 import com.dictionary.web.service.filter.CardFilter;
 import com.dictionary.web.service.filter.CardSource;
 import com.dictionary.web.service.filter.AssociationTrainerCardFilter;

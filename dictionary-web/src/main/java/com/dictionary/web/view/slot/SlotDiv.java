@@ -1,6 +1,6 @@
 package com.dictionary.web.view.slot;
 
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.Size;
 import com.vaadin.flow.component.html.Div;
 
 public class SlotDiv extends Div {

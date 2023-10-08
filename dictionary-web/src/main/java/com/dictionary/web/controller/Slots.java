@@ -1,14 +1,14 @@
 package com.dictionary.web.controller;
 
-import com.dictionary.web.domain.PictureFile;
-import com.dictionary.web.domain.Slot;
-import com.dictionary.web.domain.SlotStat;
+import com.dictionary.core.domain.PictureFile;
+import com.dictionary.core.domain.Slot;
+import com.dictionary.core.domain.SlotStat;
 import com.dictionary.web.domain.dto.SlotCreatorDto;
 import com.dictionary.web.domain.dto.SlotDto;
 import com.dictionary.web.service.FilePropertyService;
 import com.dictionary.web.service.Navigator;
 import com.dictionary.web.service.mapper.SlotMapper;
-import com.dictionary.web.repository.batis.SlotStatRepository;
+import com.dictionary.core.repository.SlotStatRepository;
 import com.dictionary.web.service.SlotService;
 import com.dictionary.web.view.slot.SlotCreator;
 import com.dictionary.web.view.slot.SlotReader;

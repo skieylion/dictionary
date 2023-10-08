@@ -1,6 +1,6 @@
 package com.dictionary.web.view.button;
 
-import com.dictionary.web.domain.MediaFile;
+import com.dictionary.core.domain.MediaFile;
 import com.dictionary.web.utils.MediaBase64ToMediaFileConverter;
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.HtmlComponent;

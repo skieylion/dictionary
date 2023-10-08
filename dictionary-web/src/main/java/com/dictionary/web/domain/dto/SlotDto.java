@@ -1,6 +1,6 @@
 package com.dictionary.web.domain.dto;
 
-import com.dictionary.web.domain.SlotStat;
+import com.dictionary.core.domain.SlotStat;
 import lombok.Data;
 
 @Data

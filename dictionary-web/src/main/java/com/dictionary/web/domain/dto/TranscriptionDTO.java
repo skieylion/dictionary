@@ -1,7 +1,7 @@
 package com.dictionary.web.domain.dto;
 
-import com.dictionary.web.domain.MediaFile;
-import com.dictionary.web.domain.TranscriptionVariant;
+import com.dictionary.core.domain.MediaFile;
+import com.dictionary.core.domain.TranscriptionVariant;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,9 +1,9 @@
 package com.dictionary.web.view;
 
-import com.dictionary.web.domain.AudioFile;
-import com.dictionary.web.domain.PictureFile;
-import com.dictionary.web.domain.Size;
-import com.dictionary.web.domain.Transcription;
+import com.dictionary.core.domain.AudioFile;
+import com.dictionary.core.domain.PictureFile;
+import com.dictionary.core.domain.Size;
+import com.dictionary.core.domain.Transcription;
 import com.dictionary.web.view.button.AudioButton;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;

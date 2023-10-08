@@ -1,10 +1,10 @@
 package com.dictionary.web.service;
 
 
-import com.dictionary.web.domain.FileProperty;
-import com.dictionary.web.domain.MediaFile;
-import com.dictionary.web.repository.FileStorageRepository;
-import com.dictionary.web.repository.FilePropertyRepository;
+import com.dictionary.core.domain.FileProperty;
+import com.dictionary.core.domain.MediaFile;
+import com.dictionary.core.repository.FileStorageRepository;
+import com.dictionary.core.repository.FilePropertyRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

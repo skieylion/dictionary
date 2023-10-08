@@ -1,6 +1,6 @@
 package com.dictionary.web.view;
 
-import com.dictionary.web.domain.PictureFile;
+import com.dictionary.core.domain.PictureFile;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.server.StreamResource;
 

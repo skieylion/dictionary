@@ -1,8 +1,8 @@
 package com.dictionary.web.service;
 
-import com.dictionary.web.domain.PictureFile;
-import com.dictionary.web.domain.UnsplashResponse;
-import com.dictionary.web.repository.Unsplash;
+import com.dictionary.core.domain.PictureFile;
+import com.dictionary.core.domain.UnsplashResponse;
+import com.dictionary.core.repository.Unsplash;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

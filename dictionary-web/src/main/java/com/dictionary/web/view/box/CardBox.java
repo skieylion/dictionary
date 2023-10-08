@@ -1,7 +1,7 @@
 package com.dictionary.web.view.box;
 
-import com.dictionary.web.domain.PictureFile;
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.PictureFile;
+import com.dictionary.core.domain.Size;
 import com.dictionary.web.domain.dto.CardDTO;
 import com.dictionary.web.domain.dto.TranscriptionDTO;
 import com.dictionary.web.view.CustomTextArea;

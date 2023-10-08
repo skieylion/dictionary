@@ -1,8 +1,8 @@
 package com.dictionary.web.view.box;
 
-import com.dictionary.web.domain.MediaFile;
-import com.dictionary.web.domain.MediaType;
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.MediaFile;
+import com.dictionary.core.domain.MediaType;
+import com.dictionary.core.domain.Size;
 import com.dictionary.web.view.CustomTextField;
 import com.dictionary.web.view.button.AudioButton;
 import com.dictionary.web.view.button.FileButton;

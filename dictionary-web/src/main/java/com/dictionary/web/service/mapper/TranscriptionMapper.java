@@ -1,7 +1,7 @@
 package com.dictionary.web.service.mapper;
 
 import com.dictionary.web.domain.AudioItem;
-import com.dictionary.web.domain.Transcription;
+import com.dictionary.core.domain.Transcription;
 import com.dictionary.web.view.*;
 import com.dictionary.web.view.button.CustomButton;
 import com.dictionary.web.view.layout.FullHorizontalLayout;

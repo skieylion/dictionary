@@ -1,9 +1,19 @@
 package com.dictionary.web.service.command;
 
-import com.dictionary.web.domain.*;
+import com.dictionary.core.domain.Card;
+import com.dictionary.core.domain.Transcription;
+import com.dictionary.core.domain.CardAndSlot;
+import com.dictionary.core.domain.Example;
+import com.dictionary.core.domain.Slot;
 import com.dictionary.web.domain.dto.CardDTO;
 import com.dictionary.web.domain.dto.TranscriptionDTO;
-import com.dictionary.web.repository.*;
+import com.dictionary.core.repository.CardAndSlotRepository;
+import com.dictionary.core.repository.CardRememberRepository;
+import com.dictionary.core.repository.CardRepository;
+import com.dictionary.core.repository.ExampleRepository;
+import com.dictionary.core.repository.PartOfSpeechRepository;
+import com.dictionary.core.repository.SlotRepository;
+import com.dictionary.core.repository.TranscriptionRepository;
 import com.dictionary.web.service.FilePropertyService;
 import com.dictionary.web.service.mapper.CardMapper;
 import lombok.AllArgsConstructor;
@@ -11,8 +21,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.HashSet;
 
 @Service
 @AllArgsConstructor

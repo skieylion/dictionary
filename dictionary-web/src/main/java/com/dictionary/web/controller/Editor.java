@@ -1,9 +1,10 @@
 package com.dictionary.web.controller;
 
-import com.dictionary.web.domain.*;
+import com.dictionary.core.domain.Card;
+import com.dictionary.core.domain.Size;
 import com.dictionary.web.domain.dto.CardDTO;
 import com.dictionary.web.domain.dto.TranscriptionDTO;
-import com.dictionary.web.repository.SlotRepository;
+import com.dictionary.core.repository.SlotRepository;
 import com.dictionary.web.service.command.CardService;
 import com.dictionary.web.service.FilePropertyService;
 import com.dictionary.web.service.Navigator;
@@ -16,11 +17,18 @@ import com.dictionary.web.view.box.SlotBox;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.*;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
+import com.vaadin.flow.router.OptionalParameter;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteParameters;
+import com.vaadin.flow.router.RouterLayout;
+import com.dictionary.core.domain.Example;
+import com.dictionary.core.domain.PictureFile;
 
 import javax.annotation.security.PermitAll;
 import javax.persistence.EntityNotFoundException;
-import java.util.*;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Route(value = "/cards/:cardId/editor", layout = Home.class)
@@ -52,7 +60,7 @@ public class Editor extends CenterVerticalLayout implements RouterLayout, HasUrl
         RouteParameters parameters = event.getRouteParameters();
         return Long.parseLong(parameters.get("cardId").orElseThrow(EntityNotFoundException::new));
     }
-    
+
     @Override
     public void setParameter(BeforeEvent event, @OptionalParameter String parameter) {
         Card card = cardService.findCardById(getCardIdFromRouteParameters(event));

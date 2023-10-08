@@ -1,6 +1,6 @@
 package com.dictionary.web.view.slot;
 
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.Size;
 import com.dictionary.web.domain.dto.SlotCreatorDto;
 import com.dictionary.web.view.ComponentBuilder;
 import com.dictionary.web.view.FileUploader;

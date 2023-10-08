@@ -1,7 +1,7 @@
 package com.dictionary.web.service.mapper;
 
-import com.dictionary.web.domain.Card;
-import com.dictionary.web.domain.FileProperty;
+import com.dictionary.core.domain.Card;
+import com.dictionary.core.domain.FileProperty;
 import com.dictionary.web.domain.dto.CardDTO;
 import org.mapstruct.Mapper;
 

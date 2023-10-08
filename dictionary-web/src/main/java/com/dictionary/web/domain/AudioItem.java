@@ -1,5 +1,7 @@
 package com.dictionary.web.domain;
 
+import com.dictionary.core.domain.MediaFile;
+import com.dictionary.core.domain.TranscriptionVariant;
 import com.dictionary.web.view.button.AudioButton;
 import com.dictionary.web.view.FileUploader;
 import com.dictionary.web.view.SelectTranscriptionVariant;

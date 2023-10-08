@@ -1,8 +1,8 @@
 package com.dictionary.web.view;
 
-import com.dictionary.web.domain.MediaType;
-import com.dictionary.web.domain.PictureFile;
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.MediaType;
+import com.dictionary.core.domain.PictureFile;
+import com.dictionary.core.domain.Size;
 import com.dictionary.web.view.layout.FullVerticalLayout;
 import com.dictionary.web.view.layout.VerticalBorderLayout;
 import com.vaadin.flow.component.ClientCallable;

@@ -1,7 +1,7 @@
 package com.dictionary.web.view.box;
 
 import com.dictionary.web.domain.ListBoxItem;
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.Size;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import java.util.ArrayList;

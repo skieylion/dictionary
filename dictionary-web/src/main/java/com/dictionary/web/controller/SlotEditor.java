@@ -1,9 +1,9 @@
 package com.dictionary.web.controller;
 
-import com.dictionary.web.domain.FileProperty;
-import com.dictionary.web.domain.PictureFile;
-import com.dictionary.web.domain.Size;
-import com.dictionary.web.domain.Slot;
+import com.dictionary.core.domain.FileProperty;
+import com.dictionary.core.domain.PictureFile;
+import com.dictionary.core.domain.Size;
+import com.dictionary.core.domain.Slot;
 import com.dictionary.web.service.FilePropertyService;
 import com.dictionary.web.service.SlotService;
 import com.dictionary.web.view.layout.CenterVerticalLayout;

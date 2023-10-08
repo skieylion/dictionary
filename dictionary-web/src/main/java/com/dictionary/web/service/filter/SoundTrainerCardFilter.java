@@ -1,6 +1,6 @@
 package com.dictionary.web.service.filter;
 
-import com.dictionary.web.domain.Card;
+import com.dictionary.core.domain.Card;
 
 import java.util.List;
 import java.util.stream.Collectors;

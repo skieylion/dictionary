@@ -1,6 +1,6 @@
 package com.dictionary.web.view.exercise;
 
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.Size;
 import com.dictionary.web.domain.Trainer;
 import com.dictionary.web.view.TextRecordField;
 import com.vaadin.flow.component.Html;

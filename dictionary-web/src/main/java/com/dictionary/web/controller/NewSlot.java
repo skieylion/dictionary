@@ -1,7 +1,7 @@
 package com.dictionary.web.controller;
 
-import com.dictionary.web.domain.Size;
-import com.dictionary.web.repository.batis.SlotStatRepository;
+import com.dictionary.core.domain.Size;
+import com.dictionary.core.repository.SlotStatRepository;
 import com.dictionary.web.service.Navigator;
 import com.dictionary.web.service.SlotService;
 import com.dictionary.web.service.mapper.SlotMapper;

@@ -1,6 +1,6 @@
 package com.dictionary.web.service;
 
-import com.dictionary.web.domain.Card;
+import com.dictionary.core.domain.Card;
 import com.dictionary.web.domain.Trainer;
 import com.dictionary.web.view.ButtonController;
 import com.dictionary.web.view.button.CustomButton;

@@ -1,7 +1,7 @@
 package com.dictionary.web.view.exercise;
 
-import com.dictionary.web.domain.PictureFile;
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.PictureFile;
+import com.dictionary.core.domain.Size;
 import com.dictionary.web.domain.Trainer;
 import com.dictionary.web.service.validator.ImageExerciseValidator;
 import com.dictionary.web.view.Picture;

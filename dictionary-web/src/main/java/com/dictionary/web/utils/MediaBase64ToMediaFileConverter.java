@@ -1,6 +1,6 @@
 package com.dictionary.web.utils;
 
-import com.dictionary.web.domain.MediaFile;
+import com.dictionary.core.domain.MediaFile;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;

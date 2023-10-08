@@ -1,7 +1,10 @@
 package com.dictionary.web.controller;
 
+import com.dictionary.core.domain.Size;
+import com.dictionary.web.domain.CardContext;
+import com.dictionary.web.domain.ContextContainer;
 import com.dictionary.web.domain.dto.CardDTO;
-import com.dictionary.web.repository.ExampleRepository;
+import com.dictionary.core.repository.ExampleRepository;
 import com.dictionary.web.service.CardValidator;
 import com.dictionary.web.service.Navigator;
 import com.dictionary.web.service.UnsplashService;
@@ -9,10 +12,10 @@ import com.dictionary.web.service.handler.context.CardContextExampleCreator;
 import com.dictionary.web.service.handler.context.CardContextExplanationCreator;
 import com.dictionary.web.service.handler.context.CardContextImageCreator;
 import com.dictionary.web.service.handler.context.CardContextSoundCreator;
-import com.dictionary.web.view.*;
-import com.dictionary.web.domain.*;
-import com.dictionary.web.repository.SlotRepository;
+import com.dictionary.core.repository.SlotRepository;
 import com.dictionary.web.service.command.CardService;
+import com.dictionary.web.view.CardContainer;
+import com.dictionary.web.view.MenuBarWrapper;
 import com.dictionary.web.view.box.CardBox;
 import com.dictionary.web.view.button.CustomButton;
 import com.vaadin.flow.component.button.Button;

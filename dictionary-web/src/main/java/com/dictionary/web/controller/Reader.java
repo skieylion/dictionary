@@ -1,10 +1,10 @@
 package com.dictionary.web.controller;
 
-import com.dictionary.web.domain.Card;
-import com.dictionary.web.domain.Example;
-import com.dictionary.web.domain.PictureFile;
-import com.dictionary.web.domain.Size;
-import com.dictionary.web.repository.CardRepository;
+import com.dictionary.core.domain.Card;
+import com.dictionary.core.domain.Example;
+import com.dictionary.core.domain.PictureFile;
+import com.dictionary.core.domain.Size;
+import com.dictionary.core.repository.CardRepository;
 import com.dictionary.web.service.FilePropertyService;
 import com.dictionary.web.view.CardReader;
 import com.dictionary.web.view.StandardDefaultPicture;

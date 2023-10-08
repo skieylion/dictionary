@@ -1,6 +1,6 @@
 package com.dictionary.web.controller;
 
-import com.dictionary.web.domain.Example;
+import com.dictionary.core.domain.Example;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.*;
 import lombok.AllArgsConstructor;

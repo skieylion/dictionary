@@ -1,12 +1,12 @@
 package com.dictionary.web.service;
 
-import com.dictionary.web.domain.Card;
-import com.dictionary.web.domain.MediaFile;
-import com.dictionary.web.domain.Slot;
-import com.dictionary.web.domain.SlotStat;
-import com.dictionary.web.repository.CardAndSlotRepository;
-import com.dictionary.web.repository.SlotRepository;
-import com.dictionary.web.repository.batis.SlotStatRepository;
+import com.dictionary.core.domain.Card;
+import com.dictionary.core.domain.MediaFile;
+import com.dictionary.core.domain.Slot;
+import com.dictionary.core.domain.SlotStat;
+import com.dictionary.core.repository.CardAndSlotRepository;
+import com.dictionary.core.repository.SlotRepository;
+import com.dictionary.core.repository.SlotStatRepository;
 import com.dictionary.web.service.command.CardService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

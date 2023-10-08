@@ -1,7 +1,7 @@
 package com.dictionary.web.utils;
 
 import com.dictionary.web.domain.AudioItem;
-import com.dictionary.web.domain.MediaFile;
+import com.dictionary.core.domain.MediaFile;
 import com.dictionary.web.domain.dto.TranscriptionDTO;
 
 import javax.persistence.EntityNotFoundException;

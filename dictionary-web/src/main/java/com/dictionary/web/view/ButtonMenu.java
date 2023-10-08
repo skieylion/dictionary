@@ -1,6 +1,6 @@
 package com.dictionary.web.view;
 
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.Size;
 import com.dictionary.web.view.layout.FullHorizontalLayout;
 import com.vaadin.flow.component.button.Button;
 

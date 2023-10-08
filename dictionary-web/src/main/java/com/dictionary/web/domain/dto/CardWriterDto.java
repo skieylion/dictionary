@@ -1,6 +1,6 @@
 package com.dictionary.web.domain.dto;
 
-import com.dictionary.web.domain.PictureFile;
+import com.dictionary.core.domain.PictureFile;
 import com.dictionary.web.view.box.CardBox;
 import lombok.Data;
 

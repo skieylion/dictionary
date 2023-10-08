@@ -1,6 +1,10 @@
 package com.dictionary.web.domain.dto;
 
-import com.dictionary.web.domain.*;
+import com.dictionary.core.domain.CardRemember;
+import com.dictionary.core.domain.Example;
+import com.dictionary.core.domain.PartOfSpeech;
+import com.dictionary.core.domain.Slot;
+import com.dictionary.core.domain.Transcription;
 import lombok.Data;
 
 import java.util.HashSet;

@@ -1,7 +1,7 @@
 package com.dictionary.web.view.button;
 
-import com.dictionary.web.domain.AudioFile;
-import com.dictionary.web.domain.MediaFile;
+import com.dictionary.core.domain.AudioFile;
+import com.dictionary.core.domain.MediaFile;
 import com.vaadin.flow.component.HtmlComponent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;

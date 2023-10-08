@@ -1,10 +1,10 @@
 package com.dictionary.web.controller;
 
-import com.dictionary.web.domain.Card;
-import com.dictionary.web.domain.CardRemember;
-import com.dictionary.web.domain.Example;
-import com.dictionary.web.domain.Size;
-import com.dictionary.web.repository.CardRememberRepository;
+import com.dictionary.core.domain.Card;
+import com.dictionary.core.domain.CardRemember;
+import com.dictionary.core.domain.Example;
+import com.dictionary.core.domain.Size;
+import com.dictionary.core.repository.CardRememberRepository;
 import com.dictionary.web.service.FlashcardTrainer;
 import com.dictionary.web.service.SlotService;
 import com.vaadin.flow.component.UI;

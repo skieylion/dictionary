@@ -1,6 +1,6 @@
 package com.dictionary.web.view.layout;
 
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.Size;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 public class FullHorizontalLayout extends HorizontalLayout {

@@ -1,9 +1,9 @@
 package com.dictionary.web.controller;
 
-import com.dictionary.web.domain.Example;
-import com.dictionary.web.domain.PictureFile;
-import com.dictionary.web.domain.Slot;
-import com.dictionary.web.repository.SlotRepository;
+import com.dictionary.core.domain.Example;
+import com.dictionary.core.domain.PictureFile;
+import com.dictionary.core.domain.Slot;
+import com.dictionary.core.repository.SlotRepository;
 import com.dictionary.web.service.command.CardService;
 import com.dictionary.web.service.FilePropertyService;
 import com.dictionary.web.view.CardMiniReader;

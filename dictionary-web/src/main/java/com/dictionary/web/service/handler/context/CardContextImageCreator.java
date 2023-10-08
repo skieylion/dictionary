@@ -4,7 +4,7 @@ package com.dictionary.web.service.handler.context;
 import com.dictionary.web.domain.CardContext;
 import com.dictionary.web.domain.CardContextType;
 import com.dictionary.web.domain.CardImageContext;
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.Size;
 import com.dictionary.web.service.UnsplashService;
 import com.dictionary.web.service.command.EditCardCommand;
 import com.dictionary.web.view.ImageSearcher;

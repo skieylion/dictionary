@@ -1,6 +1,6 @@
 package com.dictionary.web.view.slot;
 
-import com.dictionary.web.domain.Size;
+import com.dictionary.core.domain.Size;
 import com.dictionary.web.view.layout.FullVerticalLayout;
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
 import com.vaadin.flow.internal.Pair;
