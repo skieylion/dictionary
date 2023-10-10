@@ -2,7 +2,7 @@ package com.dictionary.web.view;
 
 import com.vaadin.flow.component.textfield.TextArea;
 
-public class FullTextArea extends TextArea {
+public final class FullTextArea extends TextArea {
     private FullTextArea() {
 
     }

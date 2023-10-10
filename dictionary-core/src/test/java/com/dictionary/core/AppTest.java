@@ -1,38 +1,15 @@
 package com.dictionary.core;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import com.dictionary.core.domain.Card;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+import static junit.framework.Assert.assertTrue;
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+public class AppTest {
+
+    public void testApp() {
+        Card card = new Card();
+        card.setDefinition("Hello world");
+        assertTrue(card.getDefinition().equals("Hello world"));
     }
 }

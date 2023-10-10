@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 
-public class CustomButton {
+public final class CustomButton {
 
     private final Button button;
 

@@ -44,7 +44,7 @@ public class CardMiniReader extends VerticalHeaderLayout {
         picture = new MiniDefaultPicture();
         picture.setWidthFull();
         picture.setHeight("190px");
-        picture.getStyle().set("border-bottom", "3px solid #504F51");//3px solid #212A36
+        picture.getStyle().set("border-bottom", "3px solid #504F51"); //3px solid #212A36
         HorizontalLayout buttonHorizontal = ComponentBuilder.builder(HorizontalLayout.class)
                 .width(Size.PERCENT_100)
                 .emptyIndent(false, false)

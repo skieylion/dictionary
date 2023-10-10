@@ -3,11 +3,12 @@ package com.dictionary.web.view;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
-import com.vaadin.flow.component.orderedlayout.*;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.ThemableLayout;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class ComponentBuilder<T extends Component & HasComponents & HasSize> {
+public final class ComponentBuilder<T extends Component & HasComponents & HasSize> {
 
     private final T component;
 

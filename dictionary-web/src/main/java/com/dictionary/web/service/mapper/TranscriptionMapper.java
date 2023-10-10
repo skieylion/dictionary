@@ -2,7 +2,9 @@ package com.dictionary.web.service.mapper;
 
 import com.dictionary.web.domain.AudioItem;
 import com.dictionary.core.domain.Transcription;
-import com.dictionary.web.view.*;
+import com.dictionary.web.view.CustomTextField;
+import com.dictionary.web.view.FileUploader;
+import com.dictionary.web.view.SelectTranscriptionVariant;
 import com.dictionary.web.view.button.CustomButton;
 import com.dictionary.web.view.layout.FullHorizontalLayout;
 import com.vaadin.flow.component.icon.VaadinIcon;

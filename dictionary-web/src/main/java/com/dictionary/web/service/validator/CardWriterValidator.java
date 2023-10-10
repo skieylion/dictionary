@@ -30,10 +30,7 @@ public class CardWriterValidator {
                 .map(binders::get)
                 .peek(Binder::validate)
                 .allMatch(binder -> {
-                    boolean result = binder.isValid();
-                    if (binders.size() > 0) {
-                    }
-                    return result;
+                    return binder.isValid();
                 });
     }
 

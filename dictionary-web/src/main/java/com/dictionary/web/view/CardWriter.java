@@ -1,10 +1,11 @@
 package com.dictionary.web.view;
 
-import com.dictionary.web.domain.*;
+import com.dictionary.web.domain.ElementType;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.Getter;
 
-import java.util.*;
+import java.util.Set;
+
 
 public class CardWriter extends VerticalLayout {
     @Getter

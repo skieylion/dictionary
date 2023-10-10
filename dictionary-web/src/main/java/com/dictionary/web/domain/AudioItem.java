@@ -23,7 +23,7 @@ public class AudioItem extends ListBoxItem {
     private TranscriptionVariant transcriptionVariant;
     @Setter
     private FileUploader buttonUpload;
-    
+
     public Optional<MediaFile> getFile() {
         return audioPlayButton.getFile();
     }

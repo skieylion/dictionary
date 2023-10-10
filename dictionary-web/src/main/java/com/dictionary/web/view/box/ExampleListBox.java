@@ -10,9 +10,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ExampleListBox extends ListBox {
+    private static final int MAX_COUNT = 4;
 
     public ExampleListBox() {
-        super(4);
+        super(MAX_COUNT);
         createExample("");
     }
 

@@ -1,6 +1,10 @@
 package com.dictionary.core.domain;
 
-public interface CardVariant {
-    String BASIC = "Basic";
-    String FULL = "Full";
+public final class CardVariant {
+    private CardVariant() {
+
+    }
+
+    public static final String BASIC = "Basic";
+    public static final String FULL = "Full";
 }

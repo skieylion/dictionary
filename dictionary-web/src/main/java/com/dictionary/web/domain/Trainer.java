@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 public abstract class Trainer extends VerticalLayout {
     @Setter
     private Predicate<String> inspector;
-    
     @Setter
     @Getter
     private Card card;

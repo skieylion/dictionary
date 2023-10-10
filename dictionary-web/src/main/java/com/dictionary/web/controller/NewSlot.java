@@ -69,6 +69,4 @@ public class NewSlot extends VerticalLayout implements RouterLayout {
         slotService.insertSlot(textField.getValue(), pictureLoader.getPictureFile().orElse(null));
         UI.getCurrent().navigate(NewSlot.class);
     }
-
-
 }

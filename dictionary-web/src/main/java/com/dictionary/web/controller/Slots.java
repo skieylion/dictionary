@@ -90,7 +90,7 @@ public class Slots extends FlexLayout implements RouterLayout {
 
     private void draw() {
         styles(this);
-        findAll().stream().map(this::createSlotReaderNew).peek(div -> div.getStyle().set("margin", "10px")).forEach(this::add);//
+        findAll().stream().map(this::createSlotReaderNew).peek(div -> div.getStyle().set("margin", "10px")).forEach(this::add);
     }
 
     private void dialog(Runnable confirm) {

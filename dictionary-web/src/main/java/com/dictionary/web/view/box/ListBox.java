@@ -42,6 +42,8 @@ public class ListBox extends VerticalLayout {
             case 2:
                 items.get(0).getCloseButton().setEnabled(true);
                 break;
+            default:
+                throw new IllegalStateException("The items is not valid size");
         }
     }
 

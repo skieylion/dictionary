@@ -72,13 +72,9 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
     }
 
     private void draw(long slotId) {
-
-        cardService.deleteByCardId(45308L);
-
         removeAll();
         var layout = new VerticalLayout();
         layout.setWidth(Size.PERCENT_50);
-
 
         var tf = new TextField();
         tf.setWidthFull();
@@ -114,9 +110,11 @@ public class Writer extends VerticalLayout implements RouterLayout, HasUrlParame
         //cardContainer.add(new Span("sdfdsf"), new ArrayList<>());
         layout.add(cardContainer);
         save.addClickListener(listener -> {
-            if (CardValidator.validate(contextDeque))
+            if (CardValidator.validate(contextDeque)) {
                 clickButton(slotId);
-            else Notification.show("Not valid card");
+            } else {
+                Notification.show("Not valid card");
+            }
         });
         add(layout);
     }

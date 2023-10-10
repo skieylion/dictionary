@@ -15,6 +15,8 @@ import org.springframework.security.provisioning.UserDetailsManager;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfiguration extends VaadinWebSecurity {
+    private static final int STRENGTH = 4;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
@@ -30,6 +32,6 @@ public class SecurityConfiguration extends VaadinWebSecurity {
 
     @Bean
     public PasswordEncoder bcryptPasswordEncoder() {
-        return new BCryptPasswordEncoder(4);
+        return new BCryptPasswordEncoder(STRENGTH);
     }
 }

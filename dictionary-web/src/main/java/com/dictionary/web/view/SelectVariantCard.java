@@ -11,18 +11,18 @@ import java.util.function.Consumer;
 
 public class SelectVariantCard extends FullVerticalLayout {
 
-    private static final List<String> cardVariants;
+    private static final List<String> CARD_VARIANTS;
 
     static {
-        cardVariants = new ArrayList<>();
-        cardVariants.add(CardVariant.BASIC);
-        cardVariants.add(CardVariant.FULL);
+        CARD_VARIANTS = new ArrayList<>();
+        CARD_VARIANTS.add(CardVariant.BASIC);
+        CARD_VARIANTS.add(CardVariant.FULL);
     }
 
     private final Select<String> select = new Select<>();
 
     public SelectVariantCard(String cardVariant) {
-        select.setItems(cardVariants);
+        select.setItems(CARD_VARIANTS);
         select.setValue(cardVariant);
         select.setWidth(Size.PERCENT_100);
         add(select);

@@ -26,7 +26,9 @@ public class CardContainer extends VerticalLayout {
         setHorizontalComponentAlignment(Alignment.CENTER);
     }
 
-    private enum Align {TOP, BOTTOM}
+    private enum Align {
+        TOP, BOTTOM
+    }
 
     private final VerticalLayout header;
     private final VerticalLayout footer;

@@ -30,7 +30,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = {"com.dictionary.web", "com.dictionary.core"})
 @EntityScan(basePackages = {"com.dictionary.web", "com.dictionary.core"})
 @EnableJpaRepositories(basePackages = {"com.dictionary.core"})
-public class Application implements AppShellConfigurator {
+public final class Application implements AppShellConfigurator {
+    private Application() {
+
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }

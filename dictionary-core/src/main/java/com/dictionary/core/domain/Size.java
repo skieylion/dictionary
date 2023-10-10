@@ -1,12 +1,16 @@
 package com.dictionary.core.domain;
 
-public interface Size {
-    String PERCENT_100 = "100%";
-    String PERCENT_50 = "50%";
-    String PX_300 = "300px";
-    String PX_350 = "350px";
-    String PX_400 = "400px";
-    String PX_450 = "450px";
-    String PX_700 = "700px";
-    String PX_75 = "75px";
+public final class Size {
+
+    private Size() {
+    }
+
+    public static final String PERCENT_100 = "100%";
+    public static final String PERCENT_50 = "50%";
+    public static final String PX_300 = "300px";
+    public static final String PX_350 = "350px";
+    public static final String PX_400 = "400px";
+    public static final String PX_450 = "450px";
+    public static final String PX_700 = "700px";
+    public static final String PX_75 = "75px";
 }

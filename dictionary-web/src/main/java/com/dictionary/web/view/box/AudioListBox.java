@@ -23,9 +23,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AudioListBox extends ListBox {
+    private static final int MAX_COUNT = 4;
 
     public AudioListBox() {
-        super(4);
+        super(MAX_COUNT);
         createAudio(createAudioItem());
     }
 
@@ -72,7 +73,6 @@ public class AudioListBox extends ListBox {
                 .collect(Collectors.joining(",")));
         audioItem.getButtonUpload().addFileUploaderListener(file -> {
             var dataSource = new String(file.getBytes(), StandardCharsets.UTF_8);
-            System.out.println(dataSource.substring(0, 50));
             audioItem.getAudioPlayButton().setFile(file);
             audioItem.getAudioRemoveButton().setEnabled(true);
         });

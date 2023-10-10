@@ -12,7 +12,10 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class CardValidator {
+public final class CardValidator {
+    private CardValidator() {
+    }
+
     public static boolean validate(Collection<CardContext> contexts) {
         if (!Objects.nonNull(contexts) || contexts.isEmpty()) {
             Notification.show("this card is empty");

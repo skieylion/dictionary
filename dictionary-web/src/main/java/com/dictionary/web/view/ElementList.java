@@ -62,9 +62,9 @@ public class ElementList {
         return items;
     }
 
-    private static Set<String> except(Set<String> A, Set<String> B) {
-        Set<String> result = new HashSet<>(A);
-        result.removeAll(B);
+    private static Set<String> except(Set<String> set1, Set<String> set2) {
+        Set<String> result = new HashSet<>(set1);
+        result.removeAll(set2);
         return result;
     }
 }

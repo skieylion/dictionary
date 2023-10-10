@@ -16,7 +16,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "filetable")
 @NoArgsConstructor
-public class FileProperty {
+public final class FileProperty {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
