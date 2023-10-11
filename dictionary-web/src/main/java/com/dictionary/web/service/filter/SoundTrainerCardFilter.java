@@ -16,5 +16,4 @@ public class SoundTrainerCardFilter extends CardFilterAbstract {
                 .filter(card -> FilterUtils.transcriptions(card.getTranscriptions()).size() > 0)
                 .collect(Collectors.toList());
     }
-
 }

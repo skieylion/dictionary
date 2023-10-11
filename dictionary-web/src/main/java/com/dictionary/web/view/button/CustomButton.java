@@ -1,14 +1,14 @@
 package com.dictionary.web.view.button;
 
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
+
+import org.apache.commons.lang3.StringUtils;
 
 public final class CustomButton {
 
@@ -62,7 +62,7 @@ public final class CustomButton {
     }
 
     public Button build() {
-        //button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        // button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         return button;
     }
 
@@ -73,5 +73,4 @@ public final class CustomButton {
     public static CustomButton builder(Button button) {
         return new CustomButton(button);
     }
-
 }

@@ -12,7 +12,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import java.util.List;
 import java.util.Objects;
 
-
 public class CardReader extends VerticalLayout {
 
     {
@@ -23,7 +22,12 @@ public class CardReader extends VerticalLayout {
         setMargin(false);
     }
 
-    public CardReader(String expression, PictureFile pictureFile, String explanation, List<Transcription> transcriptions, List<String> examples) {
+    public CardReader(
+            String expression,
+            PictureFile pictureFile,
+            String explanation,
+            List<Transcription> transcriptions,
+            List<String> examples) {
         var header = createHeader();
         var caption = createCaption(expression);
         header.add(caption);
@@ -40,7 +44,8 @@ public class CardReader extends VerticalLayout {
         return caption;
     }
 
-    private static void createTranscriptions(HorizontalLayout header, List<Transcription> transcriptions) {
+    private static void createTranscriptions(
+            HorizontalLayout header, List<Transcription> transcriptions) {
         for (var transcription : transcriptions) {
             if (Objects.nonNull(transcription.getFile())) {
                 var audioButton = new AudioButton((AudioFile) transcription.getFile());
@@ -63,7 +68,8 @@ public class CardReader extends VerticalLayout {
     }
 
     private static VerticalLayout createPicture(PictureFile pictureFile) {
-        Picture picture = Objects.nonNull(pictureFile) ? new Picture(pictureFile) : new StandardDefaultPicture();
+        Picture picture =
+                Objects.nonNull(pictureFile) ? new Picture(pictureFile) : new StandardDefaultPicture();
         picture.setWidthFull();
         picture.setMaxHeight(Size.PX_400);
         var pictureLayout = new VerticalLayout();

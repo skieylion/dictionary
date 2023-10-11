@@ -7,7 +7,9 @@ public class Slider {
     private final int count;
 
     public enum Direction {
-        LEFT, RIGHT, ZERO
+        LEFT,
+        RIGHT,
+        ZERO
     }
 
     private BiConsumer<Direction, Integer> consumer;
@@ -40,5 +42,4 @@ public class Slider {
     public void init() {
         this.consumer.accept(Direction.ZERO, current);
     }
-
 }

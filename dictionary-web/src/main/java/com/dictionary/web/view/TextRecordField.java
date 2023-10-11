@@ -13,16 +13,21 @@ public class TextRecordField extends TextField {
 
         setSuffixComponent(icon);
 
-        icon.addClickListener(event -> {
-            icon.getUI().ifPresent(ui -> ui.getPage().executeJs(
-                    "const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();" +
-                            "recognition.onstart = function() { console.log('Voice recognition started. Try speaking into the microphone.'); };" +
-                            "recognition.onspeechend = function() { console.log('You stopped talking.'); recognition.stop(); };" +
-                            "recognition.onresult = function(event) { var transcript = event.results[0][0].transcript;  console.log(transcript); $0.$server.setText(transcript); };" +
-                            "recognition.start();",
-                    getElement() // this binds 'this' ($0) to the current Java object
-            ));
-        });
+        icon.addClickListener(
+                event -> {
+                    icon.getUI()
+                            .ifPresent(
+                                    ui ->
+                                            ui.getPage()
+                                                    .executeJs(
+                                                            "const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();"
+                                                                    + "recognition.onstart = function() { console.log('Voice recognition started. Try speaking into the microphone.'); };"
+                                                                    + "recognition.onspeechend = function() { console.log('You stopped talking.'); recognition.stop(); };"
+                                                                    + "recognition.onresult = function(event) { var transcript = event.results[0][0].transcript;  console.log(transcript); $0.$server.setText(transcript); };"
+                                                                    + "recognition.start();",
+                                                            getElement() // this binds 'this' ($0) to the current Java object
+                                                    ));
+                });
     }
 
     @ClientCallable

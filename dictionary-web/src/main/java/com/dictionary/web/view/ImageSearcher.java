@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-
 public class ImageSearcher extends VerticalLayout {
 
     private final FlexLayout flexLayout;
@@ -34,17 +33,16 @@ public class ImageSearcher extends VerticalLayout {
         flexLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         flexLayout.setAlignItems(FlexComponent.Alignment.CENTER);
 
-
         flexLayout.setFlexWrap(FlexLayout.FlexWrap.WRAP);
         Scroller scroller = createScroller(flexLayout);
 
         TextField textField = new TextField();
         textField.setWidth(Size.PERCENT_50);
-        textField.addValueChangeListener(listener -> {
-            Optional.ofNullable(textConsumer)
-                    .ifPresent(textConsumer -> textConsumer
-                            .accept(listener.getValue()));
-        });
+        textField.addValueChangeListener(
+                listener -> {
+                    Optional.ofNullable(textConsumer)
+                            .ifPresent(textConsumer -> textConsumer.accept(listener.getValue()));
+                });
 
         var vl = new VerticalLayout(textField, spinner);
         vl.setSpacing(false);
@@ -60,7 +58,6 @@ public class ImageSearcher extends VerticalLayout {
         setMargin(false);
         setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
         setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
-
     }
 
     private static Scroller createScroller(FlexLayout flexLayout) {
@@ -84,24 +81,32 @@ public class ImageSearcher extends VerticalLayout {
     public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
         flexLayout.removeAll();
-        pictures.forEach(picture -> {
-            flexLayout.add(createPicture(picture));
-            picture.addClickListener(listener -> {
-                pictures.stream().filter(p -> p != picture).forEach(p -> p.removeClassName("hoverable-border-image-red"));
-                pictures.forEach(p -> p.addClassName("hoverable-border-image"));
-                if (picture.hasClassName("hoverable-border-image-red")) {
-                    picture.removeClassName("hoverable-border-image-red");
-                    Optional.ofNullable(unselectConsumer).ifPresent(consumer -> {
-                        unselectConsumer.accept(picture.getPictureFile());
-                    });
-                } else {
-                    picture.addClassName("hoverable-border-image-red");
-                    Optional.ofNullable(selectConsumer).ifPresent(consumer -> {
-                        consumer.accept(picture.getPictureFile());
-                    });
-                }
-            });
-        });
+        pictures.forEach(
+                picture -> {
+                    flexLayout.add(createPicture(picture));
+                    picture.addClickListener(
+                            listener -> {
+                                pictures.stream()
+                                        .filter(p -> p != picture)
+                                        .forEach(p -> p.removeClassName("hoverable-border-image-red"));
+                                pictures.forEach(p -> p.addClassName("hoverable-border-image"));
+                                if (picture.hasClassName("hoverable-border-image-red")) {
+                                    picture.removeClassName("hoverable-border-image-red");
+                                    Optional.ofNullable(unselectConsumer)
+                                            .ifPresent(
+                                                    consumer -> {
+                                                        unselectConsumer.accept(picture.getPictureFile());
+                                                    });
+                                } else {
+                                    picture.addClassName("hoverable-border-image-red");
+                                    Optional.ofNullable(selectConsumer)
+                                            .ifPresent(
+                                                    consumer -> {
+                                                        consumer.accept(picture.getPictureFile());
+                                                    });
+                                }
+                            });
+                });
     }
 
     public void changeText(Consumer<String> textConsumer) {

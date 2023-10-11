@@ -1,7 +1,7 @@
 package com.dictionary.web.service.mapper;
 
-import com.dictionary.web.domain.AudioItem;
 import com.dictionary.core.domain.Transcription;
+import com.dictionary.web.domain.AudioItem;
 import com.dictionary.web.view.CustomTextField;
 import com.dictionary.web.view.FileUploader;
 import com.dictionary.web.view.SelectTranscriptionVariant;
@@ -21,12 +21,13 @@ public class TranscriptionMapper {
     public AudioItem convertTranscriptionToAudioItem(Transcription transcription) {
         SelectTranscriptionVariant transcriptionVariant = new SelectTranscriptionVariant();
         transcriptionVariant.setValue(transcription.getVariant());
-        TextField textField = CustomTextField.builder()
-                .fullWidth()
-                .value(transcription.getValue())
-                .clearButton(true)
-                .placeholder("transcription ...")
-                .build();
+        TextField textField =
+                CustomTextField.builder()
+                        .fullWidth()
+                        .value(transcription.getValue())
+                        .clearButton(true)
+                        .placeholder("transcription ...")
+                        .build();
 
         AudioItem.builder()
                 .select(transcriptionVariant)
@@ -38,5 +39,4 @@ public class TranscriptionMapper {
                 .build();
         return null;
     }
-
 }

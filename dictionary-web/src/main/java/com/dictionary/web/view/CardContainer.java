@@ -27,7 +27,8 @@ public class CardContainer extends VerticalLayout {
     }
 
     private enum Align {
-        TOP, BOTTOM
+        TOP,
+        BOTTOM
     }
 
     private final VerticalLayout header;
@@ -109,8 +110,8 @@ public class CardContainer extends VerticalLayout {
         layout.setSpacing(false);
         layout.setPadding(false);
         layout.setMargin(false);
-        //layout.getStyle().set("position", "relative");
-        //layout.getStyle().set("left", "-25px");
+        // layout.getStyle().set("position", "relative");
+        // layout.getStyle().set("left", "-25px");
         layout.getStyle().set("padding", "1px");
         layout.getStyle().set("background-color", DARK_COLOR);
         return layout;

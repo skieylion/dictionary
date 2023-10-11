@@ -35,7 +35,8 @@ public class AudioButton extends Button {
 
     public void setFile(MediaFile file) {
         this.file = file;
-        AbstractStreamResource src = new StreamResource(file.getFullName(), () -> new ByteArrayInputStream(file.getBytes()));
+        AbstractStreamResource src =
+                new StreamResource(file.getFullName(), () -> new ByteArrayInputStream(file.getBytes()));
         audio.getElement().setAttribute("src", src);
         setEnabled(true);
     }

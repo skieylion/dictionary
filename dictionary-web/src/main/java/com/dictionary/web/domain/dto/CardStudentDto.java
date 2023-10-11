@@ -5,11 +5,12 @@ import com.dictionary.core.domain.Example;
 import com.dictionary.core.domain.PartOfSpeech;
 import com.dictionary.core.domain.Slot;
 import com.dictionary.core.domain.Transcription;
-import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
+import lombok.Data;
 
 @Data
 public class CardStudentDto {

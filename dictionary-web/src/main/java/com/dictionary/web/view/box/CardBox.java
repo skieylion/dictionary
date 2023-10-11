@@ -12,11 +12,12 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
-import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import lombok.Data;
 
 @Data
 public class CardBox extends VerticalLayout {
@@ -45,7 +46,6 @@ public class CardBox extends VerticalLayout {
     public void setPictures(List<PictureFile> pictures) {
         pictureLoader.setPictures(pictures);
     }
-
 
     private void addIntoLayout() {
         add(expression);
@@ -82,13 +82,13 @@ public class CardBox extends VerticalLayout {
         expression.setValue(card.getExpression());
         explanation.setValue(card.getExplanation());
         translation.setValue(card.getTranslation());
-        Optional.ofNullable(card.getPictureFile())
-                .ifPresent(pictureLoader::setPicture);
+        Optional.ofNullable(card.getPictureFile()).ifPresent(pictureLoader::setPicture);
         exampleListBox.setExamples(card.getExamples());
         audioListBox.setTranscriptions(card.getTranscriptions());
     }
 
-    private static VerticalHeaderLayout createVerticalHeaderLayout(String caption, Component component) {
+    private static VerticalHeaderLayout createVerticalHeaderLayout(
+            String caption, Component component) {
         var layout = new VerticalHeaderLayout(caption);
         layout.add(component);
         return layout;

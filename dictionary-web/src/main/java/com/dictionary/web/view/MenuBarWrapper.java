@@ -31,5 +31,3 @@ public class MenuBarWrapper extends MenuBar {
         menuItem.setText(label);
     }
 }
-
-

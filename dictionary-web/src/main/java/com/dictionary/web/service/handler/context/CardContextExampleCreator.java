@@ -16,10 +16,12 @@ public class CardContextExampleCreator extends CardContextBaseCreator {
         return CardExampleContext.builder()
                 .exampleBox(examples)
                 .title("examples")
-                .buttons(List.of(ButtonMini.builder()
-                        .icon(new Icon("lumo", "plus"))
-                        .click(listener -> examples.addExample())
-                        .build()))
+                .buttons(
+                        List.of(
+                                ButtonMini.builder()
+                                        .icon(new Icon("lumo", "plus"))
+                                        .click(listener -> examples.addExample())
+                                        .build()))
                 .component(examples)
                 .contextType(CardContextType.EXAMPLE)
                 .build();

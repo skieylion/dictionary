@@ -47,6 +47,5 @@ public class ButtonMini extends Button {
             button.addClickListener(listener);
             return button;
         }
-
     }
 }

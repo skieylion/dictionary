@@ -1,7 +1,7 @@
 package com.dictionary.web.view;
 
-import com.dictionary.web.domain.ElementType;
 import com.dictionary.core.domain.Size;
+import com.dictionary.web.domain.ElementType;
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
 import com.vaadin.flow.internal.Pair;
 
@@ -21,8 +21,10 @@ public class ElementList {
         elements.setItems(items);
         elements.select(items);
         elements.setItemLabelGenerator(Pair::getSecond);
-        elements.addValueChangeListener(l -> setValueChangeListener(convertPairToStr(l.getValue()),
-                convertPairToStr(l.getOldValue())));
+        elements.addValueChangeListener(
+                l ->
+                        setValueChangeListener(
+                                convertPairToStr(l.getValue()), convertPairToStr(l.getOldValue())));
         elements.setWidth(Size.PERCENT_100);
     }
 
@@ -53,7 +55,8 @@ public class ElementList {
         boolean isAdded = except(value, oldValue).size() > 0;
         getSelected(value, oldValue).stream()
                 .map(item -> ElementType.valueOf(item.toUpperCase()))
-                .forEach(elementType -> listeners.forEach(listener -> listener.accept(elementType, isAdded)));
+                .forEach(
+                        elementType -> listeners.forEach(listener -> listener.accept(elementType, isAdded)));
     }
 
     private static Set<String> getSelected(Set<String> value, Set<String> oldValue) {

@@ -50,7 +50,8 @@ public class AssociationTrainer extends Trainer {
     }
 
     private static Picture createPictureByFile(PictureFile pictureFile) {
-        Picture picture = Objects.nonNull(pictureFile) ? new Picture(pictureFile) : new StandardDefaultPicture();
+        Picture picture =
+                Objects.nonNull(pictureFile) ? new Picture(pictureFile) : new StandardDefaultPicture();
         picture.getStyle().set("border-top-left-radius", "10px");
         picture.getStyle().set("border-top-right-radius", "10px");
         picture.getStyle().set("border", "3px solid #504F51");
@@ -100,11 +101,14 @@ public class AssociationTrainer extends Trainer {
 
     private static void setBinder(TextField field, Predicate<String> predicate) {
         Binder<TextField> binder = new Binder<>();
-        binder.forField(field)
+        binder
+                .forField(field)
                 .withValidator(new ImageExerciseValidator(predicate))
                 .bind(TextField::getValue, TextField::setValue);
-        field.addKeyPressListener(Key.ENTER, event -> {
-            binder.validate();
-        });
+        field.addKeyPressListener(
+                Key.ENTER,
+                event -> {
+                    binder.validate();
+                });
     }
 }

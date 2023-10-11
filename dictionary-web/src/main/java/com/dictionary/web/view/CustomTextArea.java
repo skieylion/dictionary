@@ -29,6 +29,4 @@ public class CustomTextArea {
     public TextArea build() {
         return textArea;
     }
-
-
 }

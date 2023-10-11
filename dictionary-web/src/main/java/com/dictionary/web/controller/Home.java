@@ -14,8 +14,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
 
-import javax.annotation.security.PermitAll;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 
 @PageTitle("Main")
 @Route(value = "")
@@ -45,9 +45,8 @@ public class Home extends AppLayout implements RouterLayout {
         hl.setWidthFull();
         hl.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
         hl.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-        //hl.getStyle().set("display", "flex");
-        //hl.getStyle().set("justify-content", "space-between");
+        // hl.getStyle().set("display", "flex");
+        // hl.getStyle().set("justify-content", "space-between");
         addToNavbar(new DrawerToggle(), hl);
     }
-
 }

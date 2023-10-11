@@ -19,7 +19,6 @@ public class CardReaderController extends VerticalLayout {
     private final Button prev;
     private final Button study;
 
-
     public CardReaderController() {
         var layout = new HorizontalLayout();
         next = CustomButton.builder().icon(VaadinIcon.ARROW_CIRCLE_RIGHT).build();

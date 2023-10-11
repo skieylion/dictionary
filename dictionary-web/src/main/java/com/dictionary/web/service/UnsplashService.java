@@ -3,8 +3,6 @@ package com.dictionary.web.service;
 import com.dictionary.core.domain.PictureFile;
 import com.dictionary.core.domain.UnsplashResponse;
 import com.dictionary.core.repository.Unsplash;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URI;
@@ -18,6 +16,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
@@ -44,9 +45,12 @@ public class UnsplashService {
     private Optional<PictureFile> getPictureByUrl(String url) {
         try {
             var ext = extractExtensionFromUrl(url);
-            var response = HttpClient.newBuilder().build()
-                    .send(HttpRequest.newBuilder().uri(new URI(url)).GET().build(),
-                            HttpResponse.BodyHandlers.ofByteArray());
+            var response =
+                    HttpClient.newBuilder()
+                            .build()
+                            .send(
+                                    HttpRequest.newBuilder().uri(new URI(url)).GET().build(),
+                                    HttpResponse.BodyHandlers.ofByteArray());
             return Optional.of(new PictureFile(String.format("picture.%s", ext), response.body()));
         } catch (IOException | InterruptedException | URISyntaxException | IllegalArgumentException e) {
             return Optional.empty();

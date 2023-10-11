@@ -25,25 +25,28 @@ public class SlotCreator {
 
     public SlotCreator() {
         FrontLayout front = new FrontLayout();
-        front.buttonPlus.addClickListener(eventFront -> {
-            BackLayout backLayout = new BackLayout();
-            backLayout.plusButton.addClickListener(event -> {
-                SlotCreatorDto slotCreatorDto = new SlotCreatorDto();
-                slotCreatorDto.setName(backLayout.textField.getValue());
-                if (backLayout.uploader.getFile().isPresent()) {
-                    slotCreatorDto.setFile(backLayout.uploader.getFile().get());
-                }
-                div.removeAll();
-                div.add(front.layout);
-                listener.accept(slotCreatorDto);
-            });
-            backLayout.closeButton.addClickListener(eventBack -> {
-                div.removeAll();
-                div.add(front.layout);
-            });
-            div.removeAll();
-            div.add(backLayout.build());
-        });
+        front.buttonPlus.addClickListener(
+                eventFront -> {
+                    BackLayout backLayout = new BackLayout();
+                    backLayout.plusButton.addClickListener(
+                            event -> {
+                                SlotCreatorDto slotCreatorDto = new SlotCreatorDto();
+                                slotCreatorDto.setName(backLayout.textField.getValue());
+                                if (backLayout.uploader.getFile().isPresent()) {
+                                    slotCreatorDto.setFile(backLayout.uploader.getFile().get());
+                                }
+                                div.removeAll();
+                                div.add(front.layout);
+                                listener.accept(slotCreatorDto);
+                            });
+                    backLayout.closeButton.addClickListener(
+                            eventBack -> {
+                                div.removeAll();
+                                div.add(front.layout);
+                            });
+                    div.removeAll();
+                    div.add(backLayout.build());
+                });
 
         div.add(front.layout);
     }
@@ -64,21 +67,22 @@ public class SlotCreator {
             buttonPlus.getStyle().set("top", "135px");
         }
 
-        private final VerticalLayout layout = ComponentBuilder.builder(VerticalLayout.class)
-                .emptyIndent(false, false)
-                .width(Size.PERCENT_100)
-                .add(buttonPlus)
-                .align(FlexComponent.Alignment.CENTER)
-                .build();
-
+        private final VerticalLayout layout =
+                ComponentBuilder.builder(VerticalLayout.class)
+                        .emptyIndent(false, false)
+                        .width(Size.PERCENT_100)
+                        .add(buttonPlus)
+                        .align(FlexComponent.Alignment.CENTER)
+                        .build();
     }
 
     private static final class BackLayout {
-        VerticalLayout layout = ComponentBuilder.builder(VerticalLayout.class)
-                .emptyIndent(false, true)
-                .width(Size.PERCENT_100)
-                .align(FlexComponent.Alignment.CENTER)
-                .build();
+        VerticalLayout layout =
+                ComponentBuilder.builder(VerticalLayout.class)
+                        .emptyIndent(false, true)
+                        .width(Size.PERCENT_100)
+                        .align(FlexComponent.Alignment.CENTER)
+                        .build();
         Select<String> select = new Select<>();
 
         TextField textField = new TextField();
@@ -88,11 +92,12 @@ public class SlotCreator {
         Button closeButton = CustomButton.builder().icon(VaadinIcon.CLOSE).build();
         Button plusButton = CustomButton.builder().icon(VaadinIcon.PLUS).build();
 
-        HorizontalLayout horizontal = ComponentBuilder.builder(HorizontalLayout.class)
-                .size(Size.PERCENT_100, Size.PERCENT_100)
-                .add(plusButton)
-                .add(closeButton)
-                .build();
+        HorizontalLayout horizontal =
+                ComponentBuilder.builder(HorizontalLayout.class)
+                        .size(Size.PERCENT_100, Size.PERCENT_100)
+                        .add(plusButton)
+                        .add(closeButton)
+                        .build();
 
         {
             layout.setSpacing(false);
@@ -102,12 +107,10 @@ public class SlotCreator {
             uploader.setWidth(Size.PERCENT_100);
             horizontal.setVerticalComponentAlignment(FlexComponent.Alignment.END);
 
-            //temporarily
+            // temporarily
             select.setItems(Arrays.asList("Cards", "Image", "Table"));
             select.setValue("Cards");
-
         }
-
 
         public VerticalLayout build() {
             layout.add(select);

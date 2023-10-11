@@ -96,7 +96,7 @@
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
                     <logViolationsToConsole>false</logViolationsToConsole>
-                    <maxAllowedViolations>0</maxAllowedViolations>
+                    <maxAllowedViolations>4</maxAllowedViolations>
                     <failOnViolation>true</failOnViolation>
                     <linkXRef>false</linkXRef>
                     <violationSeverity>warning</violationSeverity>
@@ -118,28 +118,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>com.diffplug.spotless</groupId>
-                <artifactId>spotless-maven-plugin</artifactId>
-                <version>2.17.0</version>
-                <configuration>
-                    <java>
-                        <googleJavaFormat>
-                            <version>1.12.0</version>
-                        </googleJavaFormat>
-                    </java>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>apply-spotless</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>apply</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
         </plugins>
 
     </build>

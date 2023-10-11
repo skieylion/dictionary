@@ -41,10 +41,8 @@ public class FileButton extends Button {
         hiddenInput.setId(hiddenId);
         hiddenInput.getElement().setAttribute("type", "hidden");
         setIcon(new Icon(VaadinIcon.PAPERCLIP));
-        var script = LOAD_JS.replaceAll("\\{fileId}", fileId)
-                .replaceAll("\\{hiddenId}", hiddenId);
-        addClickListener(event -> UI.getCurrent().getPage()
-                .executeJs(script, this.getElement()));
+        var script = LOAD_JS.replaceAll("\\{fileId}", fileId).replaceAll("\\{hiddenId}", hiddenId);
+        addClickListener(event -> UI.getCurrent().getPage().executeJs(script, this.getElement()));
         UI.getCurrent().add(fileInput, hiddenInput);
     }
 
@@ -55,10 +53,12 @@ public class FileButton extends Button {
 
     @ClientCallable
     public void receiveFile(String dataSource) {
-        Optional.ofNullable(mediaFileConsumer).ifPresent(consumer -> {
-            var file = MediaBase64ToMediaFileConverter.convertToMediaFile(dataSource);
-            consumer.accept(file);
-        });
+        Optional.ofNullable(mediaFileConsumer)
+                .ifPresent(
+                        consumer -> {
+                            var file = MediaBase64ToMediaFileConverter.convertToMediaFile(dataSource);
+                            consumer.accept(file);
+                        });
     }
 
     public void setFileReceiver(Consumer<MediaFile> consumer) {

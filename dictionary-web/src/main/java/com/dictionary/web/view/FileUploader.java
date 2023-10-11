@@ -28,14 +28,15 @@ public final class FileUploader extends Upload {
         setUploadButton(button);
         setWidth(Size.PERCENT_100);
 
-        addSucceededListener(event -> {
-            try (InputStream is = buffer.getInputStream()) {
-                file = new MediaFile(event.getFileName(), is.readAllBytes());
-                fileUploaderListener.accept(file);
-            } catch (IOException e) {
-                throw new RuntimeException("The file is not read", e);
-            }
-        });
+        addSucceededListener(
+                event -> {
+                    try (InputStream is = buffer.getInputStream()) {
+                        file = new MediaFile(event.getFileName(), is.readAllBytes());
+                        fileUploaderListener.accept(file);
+                    } catch (IOException e) {
+                        throw new RuntimeException("The file is not read", e);
+                    }
+                });
     }
 
     public Optional<MediaFile> getFile() {

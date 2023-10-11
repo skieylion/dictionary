@@ -12,11 +12,7 @@ public class AwsConfig {
     public MinioClient clientS3(
             @Value("${app.s3.accessKey}") String accessKey,
             @Value("${app.s3.secretKey}") String secretKey,
-            @Value("${app.s3.endpoint}") String endpoint
-    ) {
-        return MinioClient.builder()
-                .endpoint(endpoint)
-                .credentials(accessKey, secretKey)
-                .build();
+            @Value("${app.s3.endpoint}") String endpoint) {
+        return MinioClient.builder().endpoint(endpoint).credentials(accessKey, secretKey).build();
     }
 }

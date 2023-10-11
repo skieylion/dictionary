@@ -13,13 +13,14 @@ import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
-import lombok.AllArgsConstructor;
 
-import javax.annotation.security.PermitAll;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.annotation.security.PermitAll;
+
+import lombok.AllArgsConstructor;
 
 @Route(value = "/cards", layout = Home.class)
 @AllArgsConstructor
@@ -38,22 +39,24 @@ public class Reader extends VerticalLayout implements RouterLayout, HasUrlParame
         Card card = cardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         card.getTranscriptions().stream()
                 .filter(transcription -> Objects.nonNull(transcription.getFileProperty()))
-                .forEach(transcription -> filePropertyService
-                        .findByFileProperty(transcription.getFileProperty())
-                        .ifPresent(transcription::setFile));
-        CardReader cardReader = new CardReader(card.getExpression(),
-                Optional.ofNullable(card.getFileProperty()).stream()
-                        .map(filePropertyService::findByFileProperty)
-                        .filter(Optional::isPresent)
-                        .map(Optional::get)
-                        .map(PictureFile::new)
-                        .findFirst()
-                        .orElse(new StandardDefaultPicture().getPictureFile()),
-                card.getDefinition(),
-                new ArrayList<>(card.getTranscriptions()),
-                card.getExamples().stream()
-                        .map(Example::getText)
-                        .collect(Collectors.toList()));
+                .forEach(
+                        transcription ->
+                                filePropertyService
+                                        .findByFileProperty(transcription.getFileProperty())
+                                        .ifPresent(transcription::setFile));
+        CardReader cardReader =
+                new CardReader(
+                        card.getExpression(),
+                        Optional.ofNullable(card.getFileProperty()).stream()
+                                .map(filePropertyService::findByFileProperty)
+                                .filter(Optional::isPresent)
+                                .map(Optional::get)
+                                .map(PictureFile::new)
+                                .findFirst()
+                                .orElse(new StandardDefaultPicture().getPictureFile()),
+                        card.getDefinition(),
+                        new ArrayList<>(card.getTranscriptions()),
+                        card.getExamples().stream().map(Example::getText).collect(Collectors.toList()));
         cardReader.setWidth(Size.PERCENT_50);
         add(cardReader);
     }

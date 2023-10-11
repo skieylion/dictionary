@@ -1,19 +1,21 @@
 package com.dictionary.web.controller;
 
 import com.dictionary.core.domain.Card;
+import com.dictionary.core.domain.Example;
+import com.dictionary.core.domain.PictureFile;
 import com.dictionary.core.domain.Size;
+import com.dictionary.core.repository.SlotRepository;
 import com.dictionary.web.domain.dto.CardDTO;
 import com.dictionary.web.domain.dto.TranscriptionDTO;
-import com.dictionary.core.repository.SlotRepository;
-import com.dictionary.web.service.command.CardService;
 import com.dictionary.web.service.FilePropertyService;
 import com.dictionary.web.service.Navigator;
+import com.dictionary.web.service.command.CardService;
 import com.dictionary.web.service.validator.CardBoxValidator;
 import com.dictionary.web.view.box.CardBox;
-import com.dictionary.web.view.layout.CenterVerticalLayout;
-import com.dictionary.web.view.button.CustomButton;
-import com.dictionary.web.view.layout.CustomVerticalLayout;
 import com.dictionary.web.view.box.SlotBox;
+import com.dictionary.web.view.button.CustomButton;
+import com.dictionary.web.view.layout.CenterVerticalLayout;
+import com.dictionary.web.view.layout.CustomVerticalLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -23,13 +25,11 @@ import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteParameters;
 import com.vaadin.flow.router.RouterLayout;
-import com.dictionary.core.domain.Example;
-import com.dictionary.core.domain.PictureFile;
 
-import javax.annotation.security.PermitAll;
-import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.annotation.security.PermitAll;
+import javax.persistence.EntityNotFoundException;
 
 @Route(value = "/cards/:cardId/editor", layout = Home.class)
 @PermitAll
@@ -48,7 +48,10 @@ public class Editor extends CenterVerticalLayout implements RouterLayout, HasUrl
         layout.setWidth(Size.PERCENT_50);
     }
 
-    public Editor(CardService cardService, SlotRepository slotRepository, FilePropertyService filePropertyService) {
+    public Editor(
+            CardService cardService,
+            SlotRepository slotRepository,
+            FilePropertyService filePropertyService) {
         this.cardService = cardService;
         this.slotRepository = slotRepository;
         this.filePropertyService = filePropertyService;
@@ -70,21 +73,23 @@ public class Editor extends CenterVerticalLayout implements RouterLayout, HasUrl
         cardDTO.setId(card.getId());
         cardDTO.setExpression(card.getExpression());
         cardDTO.setExplanation(card.getDefinition());
-        cardDTO.setExamples(card.getExamples().stream()
-                .map(Example::getText)
-                .collect(Collectors.toList()));
-        cardDTO.setTranscriptions(card.getTranscriptions().stream()
-                .map(transcription -> {
-                    TranscriptionDTO transcriptionDTO = new TranscriptionDTO();
-                    transcriptionDTO.setValue(transcription.getValue());
-                    transcriptionDTO.setVariant(transcription.getVariant());
-                    Optional.ofNullable(transcription.getFileProperty()).stream()
-                            .map(filePropertyService::findByFileProperty)
-                            .filter(Optional::isPresent)
-                            .map(Optional::get)
-                            .forEach(transcriptionDTO::setFile);
-                    return transcriptionDTO;
-                }).collect(Collectors.toList()));
+        cardDTO.setExamples(
+                card.getExamples().stream().map(Example::getText).collect(Collectors.toList()));
+        cardDTO.setTranscriptions(
+                card.getTranscriptions().stream()
+                        .map(
+                                transcription -> {
+                                    TranscriptionDTO transcriptionDTO = new TranscriptionDTO();
+                                    transcriptionDTO.setValue(transcription.getValue());
+                                    transcriptionDTO.setVariant(transcription.getVariant());
+                                    Optional.ofNullable(transcription.getFileProperty()).stream()
+                                            .map(filePropertyService::findByFileProperty)
+                                            .filter(Optional::isPresent)
+                                            .map(Optional::get)
+                                            .forEach(transcriptionDTO::setFile);
+                                    return transcriptionDTO;
+                                })
+                        .collect(Collectors.toList()));
         cardDTO.setTranslation(card.getTranslate());
         Optional.ofNullable(card.getFileProperty()).stream()
                 .map(filePropertyService::findByFileProperty)
@@ -115,6 +120,4 @@ public class Editor extends CenterVerticalLayout implements RouterLayout, HasUrl
         dialog.setText(message);
         dialog.open();
     }
-
-
 }

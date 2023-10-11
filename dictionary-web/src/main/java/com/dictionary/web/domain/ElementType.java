@@ -7,7 +7,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public enum ElementType {
-    AUDIO("audio"), IMAGE("image"), EXAMPLES("examples"), EXPLANATION("explanation"), EXPRESSION("expression");
+    AUDIO("audio"),
+    IMAGE("image"),
+    EXAMPLES("examples"),
+    EXPLANATION("explanation"),
+    EXPRESSION("expression");
 
     private final String text;
 

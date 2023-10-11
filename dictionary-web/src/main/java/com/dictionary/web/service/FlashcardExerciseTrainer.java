@@ -27,19 +27,24 @@ public class FlashcardExerciseTrainer extends VerticalLayout {
     private final Slider slider;
     private final List<Trainer> wrongCards = new ArrayList<>();
 
-    public <T extends Trainer> FlashcardExerciseTrainer(List<Trainer> trainers, Consumer<List<Card>> consumer) {
+    public <T extends Trainer> FlashcardExerciseTrainer(
+            List<Trainer> trainers, Consumer<List<Card>> consumer) {
         this.trainers = trainers;
         slider = new Slider(trainers.size());
         Button check = CustomButton.builder().name("check").build();
         Button skip = CustomButton.builder().name("skip").theme(ButtonVariant.LUMO_ERROR).build();
-        buttonController = ButtonController.builder()
-                .button(skip, button -> skip(trainers.size(), trainers.get(currentIndex.get()), consumer))
-                .button(check, button -> check(trainers.size(), trainers.get(currentIndex.get()), consumer))
-                .build();
-        slider.change((dir, index) -> {
-            currentIndex.set(index);
-            addExercise();
-        });
+        buttonController =
+                ButtonController.builder()
+                        .button(
+                                skip, button -> skip(trainers.size(), trainers.get(currentIndex.get()), consumer))
+                        .button(
+                                check, button -> check(trainers.size(), trainers.get(currentIndex.get()), consumer))
+                        .build();
+        slider.change(
+                (dir, index) -> {
+                    currentIndex.set(index);
+                    addExercise();
+                });
         slider.init();
     }
 

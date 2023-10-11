@@ -3,13 +3,13 @@ package com.dictionary.web.controller;
 import com.dictionary.core.domain.PictureFile;
 import com.dictionary.core.domain.Slot;
 import com.dictionary.core.domain.SlotStat;
+import com.dictionary.core.repository.SlotStatRepository;
 import com.dictionary.web.domain.dto.SlotCreatorDto;
 import com.dictionary.web.domain.dto.SlotDto;
 import com.dictionary.web.service.FilePropertyService;
 import com.dictionary.web.service.Navigator;
-import com.dictionary.web.service.mapper.SlotMapper;
-import com.dictionary.core.repository.SlotStatRepository;
 import com.dictionary.web.service.SlotService;
+import com.dictionary.web.service.mapper.SlotMapper;
 import com.dictionary.web.view.slot.SlotCreator;
 import com.dictionary.web.view.slot.SlotReader;
 import com.vaadin.flow.component.UI;
@@ -19,9 +19,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
 
-import javax.annotation.security.PermitAll;
 import java.util.List;
 import java.util.Optional;
+import javax.annotation.security.PermitAll;
 
 @Route(value = "/slots", layout = Home.class)
 @PermitAll
@@ -31,7 +31,11 @@ public class Slots extends FlexLayout implements RouterLayout {
     private final SlotStatRepository slotStatRepository;
     private final FilePropertyService filePropertyService;
 
-    public Slots(SlotService slotService, SlotMapper slotMapper, SlotStatRepository slotStatRepository, FilePropertyService filePropertyService) {
+    public Slots(
+            SlotService slotService,
+            SlotMapper slotMapper,
+            SlotStatRepository slotStatRepository,
+            FilePropertyService filePropertyService) {
         this.slotService = slotService;
         this.slotMapper = slotMapper;
         this.slotStatRepository = slotStatRepository;
@@ -77,20 +81,34 @@ public class Slots extends FlexLayout implements RouterLayout {
                 .map(Optional::get)
                 .map(PictureFile::new)
                 .forEach(slotReader::setPicture);
-        slotReader.getViewButton().addClickListener(l -> UI.getCurrent().navigate(Cards.class, slot.getId()));
-        slotReader.getEditButton().addClickListener(l -> UI.getCurrent().navigate("/slots/" + slot.getId() + "/editor"));
-        slotReader.getAcademyButton().addClickListener(l -> UI.getCurrent().navigate("/slots/" + slot.getId() + "/student"));
-        slotReader.getRemoveButton().addClickListener(l -> {
-            slotService.delete(slot.getId());
-        });
-        slotReader.getCreateCardButton().addClickListener(l -> UI.getCurrent().navigate("/slots/" + slot.getId() + "/cards/writer"));
+        slotReader
+                .getViewButton()
+                .addClickListener(l -> UI.getCurrent().navigate(Cards.class, slot.getId()));
+        slotReader
+                .getEditButton()
+                .addClickListener(l -> UI.getCurrent().navigate("/slots/" + slot.getId() + "/editor"));
+        slotReader
+                .getAcademyButton()
+                .addClickListener(l -> UI.getCurrent().navigate("/slots/" + slot.getId() + "/student"));
+        slotReader
+                .getRemoveButton()
+                .addClickListener(
+                        l -> {
+                            slotService.delete(slot.getId());
+                        });
+        slotReader
+                .getCreateCardButton()
+                .addClickListener(
+                        l -> UI.getCurrent().navigate("/slots/" + slot.getId() + "/cards/writer"));
         return slotReader;
     }
 
-
     private void draw() {
         styles(this);
-        findAll().stream().map(this::createSlotReaderNew).peek(div -> div.getStyle().set("margin", "10px")).forEach(this::add);
+        findAll().stream()
+                .map(this::createSlotReaderNew)
+                .peek(div -> div.getStyle().set("margin", "10px"))
+                .forEach(this::add);
     }
 
     private void dialog(Runnable confirm) {

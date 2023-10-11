@@ -2,10 +2,11 @@ package com.dictionary.web.domain;
 
 import com.dictionary.core.domain.Card;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.function.Predicate;
+
+import lombok.Getter;
+import lombok.Setter;
 
 public abstract class Trainer extends VerticalLayout {
     @Setter

@@ -33,13 +33,21 @@ public class ContextTrainer extends Trainer {
     }
 
     private static String getScript(String inputId, String outputId, int maxLength) {
-        return "const input = document.getElementById('" + inputId + "');\n" +
-                "input.addEventListener('input', function(event) {\n" +
-                "var text = event.target.value?event.target.value:'';\n" +
-                "text=text.length>" + maxLength + "?text:text+'_'.repeat(" + maxLength + "-text.length);\n" +
-                "const outputElement = document.getElementById('" + outputId + "');\n" +
-                "outputElement.textContent = text;\n" +
-                "});";
+        return "const input = document.getElementById('"
+                + inputId
+                + "');\n"
+                + "input.addEventListener('input', function(event) {\n"
+                + "var text = event.target.value?event.target.value:'';\n"
+                + "text=text.length>"
+                + maxLength
+                + "?text:text+'_'.repeat("
+                + maxLength
+                + "-text.length);\n"
+                + "const outputElement = document.getElementById('"
+                + outputId
+                + "');\n"
+                + "outputElement.textContent = text;\n"
+                + "});";
     }
 
     private static Span createExplanation(String explanation) {
@@ -51,7 +59,16 @@ public class ContextTrainer extends Trainer {
     private static Html createExample(String example, String outputId, int maxLength) {
         String part1 = example.substring(0, example.indexOf("{"));
         String part2 = example.substring(example.indexOf("}") + 1);
-        String span = "<H1 style='text-align:center;'> " + part1 + " <span id='" + outputId + "' style=\"color:red\"><font>" + "_".repeat(maxLength) + "</span> " + part2 + "</H1>";
+        String span =
+                "<H1 style='text-align:center;'> "
+                        + part1
+                        + " <span id='"
+                        + outputId
+                        + "' style=\"color:red\"><font>"
+                        + "_".repeat(maxLength)
+                        + "</span> "
+                        + part2
+                        + "</H1>";
         return new Html(span);
     }
 

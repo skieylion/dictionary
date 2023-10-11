@@ -19,17 +19,19 @@ public class EditCardCommand extends CardCommand {
         left.add(context.getComponent());
         var right = context.getContainer().getUpLayout();
         var editButton = context.getButton();
-        var buttonUndo = ButtonMini.builder().icon(new Icon("lumo", "undo"))
-                .click(listener -> {
-                    Optional.ofNullable(context.getDefaultComponent())
-                            .ifPresent(context::setComponent);
-                    Optional.ofNullable(context.getDefaultButtons())
-                            .ifPresent(context::setButtons);
-                    context.getContainer().getLeftLayout().removeAll();
-                    context.getContainer().getLeftLayout().add(context.getComponent());
-                    right.replace(listener.getSource(), editButton);
-                })
-                .build();
+        var buttonUndo =
+                ButtonMini.builder()
+                        .icon(new Icon("lumo", "undo"))
+                        .click(
+                                listener -> {
+                                    Optional.ofNullable(context.getDefaultComponent())
+                                            .ifPresent(context::setComponent);
+                                    Optional.ofNullable(context.getDefaultButtons()).ifPresent(context::setButtons);
+                                    context.getContainer().getLeftLayout().removeAll();
+                                    context.getContainer().getLeftLayout().add(context.getComponent());
+                                    right.replace(listener.getSource(), editButton);
+                                })
+                        .build();
         right.replace(editButton, buttonUndo);
         var buttons = new ArrayList<>(context.getButtons());
         buttons.remove(editButton);

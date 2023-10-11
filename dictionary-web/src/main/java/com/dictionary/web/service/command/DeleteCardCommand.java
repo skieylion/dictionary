@@ -14,14 +14,13 @@ public class DeleteCardCommand extends CardCommand {
         dialog.setText("Do you want to delete this component?");
         dialog.setCancelable(true);
         dialog.setConfirmText("Yes");
-        dialog.addConfirmListener(event -> {
-            context.getItem().setEnabled(true);
-            context.getCardContainer().drop(context.getContainer().getLayout());
-            Optional.ofNullable(context.getDefaultComponent())
-                    .ifPresent(context::setComponent);
-            Optional.ofNullable(context.getDefaultButtons())
-                    .ifPresent(context::setButtons);
-        });
+        dialog.addConfirmListener(
+                event -> {
+                    context.getItem().setEnabled(true);
+                    context.getCardContainer().drop(context.getContainer().getLayout());
+                    Optional.ofNullable(context.getDefaultComponent()).ifPresent(context::setComponent);
+                    Optional.ofNullable(context.getDefaultButtons()).ifPresent(context::setButtons);
+                });
     }
 
     @Override

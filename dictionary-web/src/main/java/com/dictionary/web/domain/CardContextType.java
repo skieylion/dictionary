@@ -1,5 +1,8 @@
 package com.dictionary.web.domain;
 
 public enum CardContextType {
-    IMAGE, EXAMPLE, SOUND, EXPLANATION;
+    IMAGE,
+    EXAMPLE,
+    SOUND,
+    EXPLANATION;
 }

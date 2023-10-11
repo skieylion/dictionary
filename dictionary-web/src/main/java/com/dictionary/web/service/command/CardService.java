@@ -1,12 +1,10 @@
 package com.dictionary.web.service.command;
 
 import com.dictionary.core.domain.Card;
-import com.dictionary.core.domain.Transcription;
 import com.dictionary.core.domain.CardAndSlot;
 import com.dictionary.core.domain.Example;
 import com.dictionary.core.domain.Slot;
-import com.dictionary.web.domain.dto.CardDTO;
-import com.dictionary.web.domain.dto.TranscriptionDTO;
+import com.dictionary.core.domain.Transcription;
 import com.dictionary.core.repository.CardAndSlotRepository;
 import com.dictionary.core.repository.CardRememberRepository;
 import com.dictionary.core.repository.CardRepository;
@@ -14,22 +12,25 @@ import com.dictionary.core.repository.ExampleRepository;
 import com.dictionary.core.repository.PartOfSpeechRepository;
 import com.dictionary.core.repository.SlotRepository;
 import com.dictionary.core.repository.TranscriptionRepository;
+import com.dictionary.web.domain.dto.CardDTO;
+import com.dictionary.web.domain.dto.TranscriptionDTO;
 import com.dictionary.web.service.FilePropertyService;
 import com.dictionary.web.service.mapper.CardMapper;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.HashSet;
+import javax.persistence.EntityNotFoundException;
+
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -45,68 +46,71 @@ public class CardService {
     private final CardMapper cardMapper;
     private final FilePropertyService filePropertyService;
 
-    private Set<Transcription> createNewTranscriptions(Card card, List<TranscriptionDTO> transcriptionDTOList) {
-        return Optional.ofNullable(transcriptionDTOList)
-                .orElse(new ArrayList<>())
-                .stream()
-                .map(tr -> Transcription.builder()
-                        .card(card)
-                        .fileProperty(Optional.ofNullable(tr.getFileId()).stream()
-                                .map(filePropertyService::findById)
-                                .filter(Optional::isPresent)
-                                .map(Optional::get)
-                                .findFirst()
-                                .orElse(null))
-                        .value(tr.getValue())
-                        .variant(tr.getVariant())
-                        .build())
+    private Set<Transcription> createNewTranscriptions(
+            Card card, List<TranscriptionDTO> transcriptionDTOList) {
+        return Optional.ofNullable(transcriptionDTOList).orElse(new ArrayList<>()).stream()
+                .map(
+                        tr ->
+                                Transcription.builder()
+                                        .card(card)
+                                        .fileProperty(
+                                                Optional.ofNullable(tr.getFileId()).stream()
+                                                        .map(filePropertyService::findById)
+                                                        .filter(Optional::isPresent)
+                                                        .map(Optional::get)
+                                                        .findFirst()
+                                                        .orElse(null))
+                                        .value(tr.getValue())
+                                        .variant(tr.getVariant())
+                                        .build())
                 .collect(Collectors.toSet());
     }
 
     @Transactional
     public void insert(CardDTO cardDTO, Collection<Slot> slots) {
-        Card card = Card.builder()
-                .expression(cardDTO.getExpression())
-                .definition(cardDTO.getExplanation())
-                .translate(cardDTO.getTranslation())
-                .fileProperty(Optional.ofNullable(cardDTO.getPictureFile())
-                        .map(filePropertyService::saveMediaFile)
-                        .orElse(null))
-                .examples(new HashSet<>())
-                .transcriptions(new HashSet<>())
-                .build();
+        Card card =
+                Card.builder()
+                        .expression(cardDTO.getExpression())
+                        .definition(cardDTO.getExplanation())
+                        .translate(cardDTO.getTranslation())
+                        .fileProperty(
+                                Optional.ofNullable(cardDTO.getPictureFile())
+                                        .map(filePropertyService::saveMediaFile)
+                                        .orElse(null))
+                        .examples(new HashSet<>())
+                        .transcriptions(new HashSet<>())
+                        .build();
         cardRepository.save(card);
-        card.setExamples(cardDTO.getExamples().stream()
-                .map(example -> Example.builder()
-                        .card(card)
-                        .text(example)
-                        .build())
-                .collect(Collectors.toSet()));
-        card.setTranscriptions(cardDTO.getTranscriptions().stream()
-                .map(t -> Transcription.builder()
-                        .card(card)
-                        .fileProperty(Optional.ofNullable(t.getFile()).stream()
-                                .map(filePropertyService::saveMediaFile)
-                                .findFirst()
-                                .orElse(null))
-                        .variant(t.getVariant())
-                        .value(t.getValue())
-                        .build())
-                .collect(Collectors.toSet()));
+        card.setExamples(
+                cardDTO.getExamples().stream()
+                        .map(example -> Example.builder().card(card).text(example).build())
+                        .collect(Collectors.toSet()));
+        card.setTranscriptions(
+                cardDTO.getTranscriptions().stream()
+                        .map(
+                                t ->
+                                        Transcription.builder()
+                                                .card(card)
+                                                .fileProperty(
+                                                        Optional.ofNullable(t.getFile()).stream()
+                                                                .map(filePropertyService::saveMediaFile)
+                                                                .findFirst()
+                                                                .orElse(null))
+                                                .variant(t.getVariant())
+                                                .value(t.getValue())
+                                                .build())
+                        .collect(Collectors.toSet()));
         cardRepository.save(card);
-        cardAndSlotRepository.saveAll(slots.stream()
-                .map(slot -> CardAndSlot.builder()
-                        .card(card)
-                        .slot(slot)
-                        .build())
-                .collect(Collectors.toSet()));
+        cardAndSlotRepository.saveAll(
+                slots.stream()
+                        .map(slot -> CardAndSlot.builder().card(card).slot(slot).build())
+                        .collect(Collectors.toSet()));
     }
 
     @Transactional
     public void setExamples(long cardId, List<String> examples) {
         Card card = cardRepository.findById(cardId).orElseThrow(EntityNotFoundException::new);
-        Optional.ofNullable(examples)
-                .orElse(new ArrayList<>()).stream()
+        Optional.ofNullable(examples).orElse(new ArrayList<>()).stream()
                 .map(text -> Example.builder().text(text).card(card).build())
                 .forEach(exampleRepository::save);
     }
@@ -119,31 +123,39 @@ public class CardService {
         transcriptionRepository.deleteByCardId(cardId);
         cardAndSlotRepository.removeByCardId(cardId);
         Optional.ofNullable(card.getFileProperty()).stream()
-                .peek(fileProperty -> {
-                    card.setFileProperty(null);
-                    cardRepository.save(card);
-                    cardRepository.flush();
-                }).forEach(filePropertyService::deleteByFileProperty);
+                .peek(
+                        fileProperty -> {
+                            card.setFileProperty(null);
+                            cardRepository.save(card);
+                            cardRepository.flush();
+                        })
+                .forEach(filePropertyService::deleteByFileProperty);
 
         card.setExpression(cardDTO.getExpression());
         card.setDefinition(cardDTO.getExplanation());
         Optional.ofNullable(cardDTO.getPictureFile()).stream()
                 .map(filePropertyService::saveMediaFile)
                 .forEach(card::setFileProperty);
-        card.setExamples(cardDTO.getExamples().stream()
-                .map(value -> Example.builder().text(value).card(card).build())
-                .collect(Collectors.toSet()));
-        card.setTranscriptions(cardDTO.getTranscriptions().stream()
-                .map(transcriptionDTO -> Transcription.builder()
-                        .value(transcriptionDTO.getValue())
-                        .card(card)
-                        .variant(transcriptionDTO.getVariant())
-                        .fileProperty(Optional.ofNullable(transcriptionDTO.getFile()).stream()
-                                .map(filePropertyService::saveMediaFile)
-                                .findFirst().orElse(null))
-                        .build()
-                ).peek(transcriptionRepository::save)
-                .collect(Collectors.toSet()));
+        card.setExamples(
+                cardDTO.getExamples().stream()
+                        .map(value -> Example.builder().text(value).card(card).build())
+                        .collect(Collectors.toSet()));
+        card.setTranscriptions(
+                cardDTO.getTranscriptions().stream()
+                        .map(
+                                transcriptionDTO ->
+                                        Transcription.builder()
+                                                .value(transcriptionDTO.getValue())
+                                                .card(card)
+                                                .variant(transcriptionDTO.getVariant())
+                                                .fileProperty(
+                                                        Optional.ofNullable(transcriptionDTO.getFile()).stream()
+                                                                .map(filePropertyService::saveMediaFile)
+                                                                .findFirst()
+                                                                .orElse(null))
+                                                .build())
+                        .peek(transcriptionRepository::save)
+                        .collect(Collectors.toSet()));
         card.setSlots(new HashSet<>(slots));
         cardRepository.save(card);
     }
@@ -157,12 +169,12 @@ public class CardService {
 
     @Transactional
     public void repeatCard(Long cardId) {
-//        cardRepository.findById(cardId).ifPresent(card -> {
-//            CardRemember cardRemember = new CardRemember();
-//            cardRemember.setEventDate(new Date());
-//            cardRemember.setCard(card);
-//            cardEventRepository.save(cardRemember);
-//        });
+        //        cardRepository.findById(cardId).ifPresent(card -> {
+        //            CardRemember cardRemember = new CardRemember();
+        //            cardRemember.setEventDate(new Date());
+        //            cardRemember.setCard(card);
+        //            cardEventRepository.save(cardRemember);
+        //        });
     }
 
     @Transactional

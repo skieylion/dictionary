@@ -48,7 +48,6 @@ public class VerticalHeaderLayout extends VerticalLayout {
         super.add(header);
     }
 
-
     @Override
     public void add(Component... components) {
         layout.add(components);

@@ -8,16 +8,17 @@ import com.dictionary.core.repository.CardAndSlotRepository;
 import com.dictionary.core.repository.SlotRepository;
 import com.dictionary.core.repository.SlotStatRepository;
 import com.dictionary.web.service.command.CardService;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
+
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -29,7 +30,6 @@ public class SlotService {
     private final FilePropertyService filePropertyService;
     @PersistenceContext
     private EntityManager entityManager;
-
 
     @Transactional(readOnly = true)
     public List<Slot> findAll() {
@@ -66,8 +66,7 @@ public class SlotService {
         cardAndSlotRepository.removeBySlotId(slot.getId());
         slotRepository.delete(slot);
         entityManager.flush();
-        Optional.ofNullable(slot.getFileWrapperId())
-                .ifPresent(filePropertyService::deleteById);
+        Optional.ofNullable(slot.getFileWrapperId()).ifPresent(filePropertyService::deleteById);
     }
 
     @Transactional(readOnly = true)
@@ -82,5 +81,4 @@ public class SlotService {
                 .reduce(Integer::sum)
                 .orElse(0);
     }
-
 }

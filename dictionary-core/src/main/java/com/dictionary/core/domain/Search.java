@@ -1,8 +1,8 @@
 package com.dictionary.core.domain;
 
-import lombok.Data;
-
 import java.util.List;
+
+import lombok.Data;
 
 @Data
 public class Search {
@@ -32,5 +32,4 @@ public class Search {
     private Metadata metadata;
 
     private List<Result> results;
-
 }

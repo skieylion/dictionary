@@ -33,5 +33,4 @@ public class Divider extends Div {
 
         add(layout);
     }
-
 }

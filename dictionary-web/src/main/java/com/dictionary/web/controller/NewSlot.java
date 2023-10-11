@@ -5,8 +5,8 @@ import com.dictionary.core.repository.SlotStatRepository;
 import com.dictionary.web.service.Navigator;
 import com.dictionary.web.service.SlotService;
 import com.dictionary.web.service.mapper.SlotMapper;
-import com.dictionary.web.view.button.CustomButton;
 import com.dictionary.web.view.PictureLoader;
+import com.dictionary.web.view.button.CustomButton;
 import com.dictionary.web.view.layout.VerticalHeaderLayout;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -14,9 +14,10 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
-import org.hibernate.Session;
 
 import javax.annotation.security.PermitAll;
+
+import org.hibernate.Session;
 
 @Route(value = "/slots/new", layout = Home.class)
 @PermitAll
@@ -36,7 +37,11 @@ public class NewSlot extends VerticalLayout implements RouterLayout {
     private final VerticalLayout layout;
     private final TextField textField;
 
-    public NewSlot(SlotService slotService, Session session, SlotMapper slotMapper, SlotStatRepository slotStatRepository) {
+    public NewSlot(
+            SlotService slotService,
+            Session session,
+            SlotMapper slotMapper,
+            SlotStatRepository slotStatRepository) {
         this.slotService = slotService;
         this.session = session;
         this.slotMapper = slotMapper;
@@ -58,7 +63,6 @@ public class NewSlot extends VerticalLayout implements RouterLayout {
         layout.add(textField);
         layout.add(new VerticalHeaderLayout("image", pictureLoader));
         layout.add(saveButton);
-
 
         add(layout);
         saveButton.addClickListener(l -> clickButton());

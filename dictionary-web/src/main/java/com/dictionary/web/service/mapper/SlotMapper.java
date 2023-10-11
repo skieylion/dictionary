@@ -3,11 +3,12 @@ package com.dictionary.web.service.mapper;
 import com.dictionary.core.domain.Slot;
 import com.dictionary.core.domain.SlotStat;
 import com.dictionary.web.domain.dto.SlotDto;
-import org.mapstruct.Mapper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface SlotMapper {

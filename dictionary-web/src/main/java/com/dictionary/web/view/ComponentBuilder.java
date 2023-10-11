@@ -15,7 +15,10 @@ public final class ComponentBuilder<T extends Component & HasComponents & HasSiz
     private ComponentBuilder(Class<?> clazz) {
         try {
             this.component = (T) clazz.getDeclaredConstructor().newInstance();
-        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+        } catch (NoSuchMethodException
+                 | InvocationTargetException
+                 | InstantiationException
+                 | IllegalAccessException e) {
             throw new RuntimeException("Couldn't call a constructor", e);
         }
     }
@@ -28,7 +31,8 @@ public final class ComponentBuilder<T extends Component & HasComponents & HasSiz
         return new ComponentBuilder<>(clazz);
     }
 
-    public static <T extends Component & HasComponents & HasSize> ComponentBuilder<?> builder(T component) {
+    public static <T extends Component & HasComponents & HasSize> ComponentBuilder<?> builder(
+            T component) {
         return new ComponentBuilder<>(component);
     }
 
@@ -69,6 +73,4 @@ public final class ComponentBuilder<T extends Component & HasComponents & HasSiz
     public <T> T build() {
         return (T) component;
     }
-
-
 }

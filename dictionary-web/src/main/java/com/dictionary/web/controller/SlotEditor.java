@@ -6,11 +6,11 @@ import com.dictionary.core.domain.Size;
 import com.dictionary.core.domain.Slot;
 import com.dictionary.web.service.FilePropertyService;
 import com.dictionary.web.service.SlotService;
-import com.dictionary.web.view.layout.CenterVerticalLayout;
+import com.dictionary.web.view.StandardDefaultPicture;
 import com.dictionary.web.view.button.CustomButton;
+import com.dictionary.web.view.layout.CenterVerticalLayout;
 import com.dictionary.web.view.layout.CustomVerticalLayout;
 import com.dictionary.web.view.slot.SlotEditorForm;
-import com.dictionary.web.view.StandardDefaultPicture;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
@@ -21,13 +21,14 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteParameters;
 import com.vaadin.flow.router.RouterLayout;
 
+import java.util.Optional;
 import javax.annotation.security.PermitAll;
 import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
 
 @Route(value = "/slots/:slotId/editor", layout = Home.class)
 @PermitAll
-public class SlotEditor extends CenterVerticalLayout implements RouterLayout, HasUrlParameter<String> {
+public class SlotEditor extends CenterVerticalLayout
+        implements RouterLayout, HasUrlParameter<String> {
 
     private final SlotService slotService;
     private final FilePropertyService filePropertyService;
@@ -66,14 +67,15 @@ public class SlotEditor extends CenterVerticalLayout implements RouterLayout, Ha
     private SlotEditorForm createEditorForm(Slot slot) {
         return SlotEditorForm.builder()
                 .name(slot.getName())
-                .picture(Optional.ofNullable(slot.getFileWrapperId()).stream()
-                        .map(filePropertyService::findById)
-                        .filter(Optional::isPresent)
-                        .map(Optional::get)
-                        .map(FileProperty::getMediaFile)
-                        .map(PictureFile::new)
-                        .findFirst()
-                        .orElse(new StandardDefaultPicture().getPictureFile()))
+                .picture(
+                        Optional.ofNullable(slot.getFileWrapperId()).stream()
+                                .map(filePropertyService::findById)
+                                .filter(Optional::isPresent)
+                                .map(Optional::get)
+                                .map(FileProperty::getMediaFile)
+                                .map(PictureFile::new)
+                                .findFirst()
+                                .orElse(new StandardDefaultPicture().getPictureFile()))
                 .build();
     }
 
@@ -82,10 +84,11 @@ public class SlotEditor extends CenterVerticalLayout implements RouterLayout, Ha
         removeAll();
         Slot slot = slotService.findById(getSlotIdFromRouteParameters(event));
         SlotEditorForm slotEditorForm = createEditorForm(slot);
-        add(CustomVerticalLayout.builder()
-                .width(Size.PERCENT_50)
-                .add(slotEditorForm.getWrapper())
-                .add(createButton(slot, slotEditorForm))
-                .build());
+        add(
+                CustomVerticalLayout.builder()
+                        .width(Size.PERCENT_50)
+                        .add(slotEditorForm.getWrapper())
+                        .add(createButton(slot, slotEditorForm))
+                        .build());
     }
 }

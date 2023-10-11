@@ -1,8 +1,8 @@
 package com.dictionary.core.domain;
 
-import lombok.Data;
-
 import java.util.List;
+
+import lombok.Data;
 
 @Data
 public class UnsplashResponse {
@@ -19,10 +19,9 @@ public class UnsplashResponse {
     public static class Link {
         private String download;
     }
+
     @Data
     public static class URL {
         private String full;
     }
-
-
 }

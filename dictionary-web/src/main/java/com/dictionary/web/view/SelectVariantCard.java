@@ -31,5 +31,4 @@ public class SelectVariantCard extends FullVerticalLayout {
     public void change(Consumer<String> consumer) {
         select.addValueChangeListener(event -> consumer.accept(event.getValue()));
     }
-
 }

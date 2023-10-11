@@ -3,7 +3,6 @@ package com.dictionary.web.service.validator;
 import com.dictionary.web.view.box.CardBox;
 import com.vaadin.flow.component.notification.Notification;
 
-
 public class CardBoxValidator implements Validate {
 
     private static final String ERROR_MESSAGE = "The field is not correct";

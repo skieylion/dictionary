@@ -2,9 +2,10 @@ package com.dictionary.web.domain.dto;
 
 import com.dictionary.core.domain.PictureFile;
 import com.dictionary.web.view.box.CardBox;
-import lombok.Data;
 
 import java.util.List;
+
+import lombok.Data;
 
 @Data
 public class CardWriterDto {
@@ -37,45 +38,48 @@ public class CardWriterDto {
         }
 
         private void addSlotIds() {
-//            cardWriterDto.setSlotIds(cardBox.getSlotBox().getSelectedItems().stream()
-//                    .map(Pair::getFirst)
-//                    .collect(Collectors.toList()));
+            //            cardWriterDto.setSlotIds(cardBox.getSlotBox().getSelectedItems().stream()
+            //                    .map(Pair::getFirst)
+            //                    .collect(Collectors.toList()));
         }
 
         private void addPicture() {
-//            if (cardBox.getSelectedItems().contains(ElementType.IMAGE)) {
-//                cardWriterDto.setPictureFile(cardBox.getCardWriter().getPictureLoader().getPicture());
-//            }
+            //            if (cardBox.getSelectedItems().contains(ElementType.IMAGE)) {
+            //
+            // cardWriterDto.setPictureFile(cardBox.getCardWriter().getPictureLoader().getPicture());
+            //            }
         }
 
         private void addDefinition() {
-//            if (cardBox.getSelectedItems().contains(ElementType.EXPLANATION)) {
-//                cardWriterDto.setDefinition(cardBox.getCardWriter().getExplanation().getValue());
-//            }
+            //            if (cardBox.getSelectedItems().contains(ElementType.EXPLANATION)) {
+            //
+            // cardWriterDto.setDefinition(cardBox.getCardWriter().getExplanation().getValue());
+            //            }
         }
 
         private void addExamples() {
-//            if (cardBox.getSelectedItems().contains(ElementType.EXAMPLES)) {
-//                cardWriterDto.setExampleList(cardBox.getCardWriter().getExampleList().getExamples().stream()
-//                        .map(item -> item.getTextField().getValue())
-//                        .collect(Collectors.toList()));
-//            }
+            //            if (cardBox.getSelectedItems().contains(ElementType.EXAMPLES)) {
+            //
+            // cardWriterDto.setExampleList(cardBox.getCardWriter().getExampleList().getExamples().stream()
+            //                        .map(item -> item.getTextField().getValue())
+            //                        .collect(Collectors.toList()));
+            //            }
         }
 
         private void addTranscriptions() {
-//            if (cardBox.getSelectedItems().contains(ElementType.AUDIO)) {
-//                cardWriterDto.setTranscriptionList(AudioItemConverter
-//                        .transcriptionDtoList(cardBox.getAudioItemList()));
-//            }
+            //            if (cardBox.getSelectedItems().contains(ElementType.AUDIO)) {
+            //                cardWriterDto.setTranscriptionList(AudioItemConverter
+            //                        .transcriptionDtoList(cardBox.getAudioItemList()));
+            //            }
         }
 
         public CardWriterDto build() {
-//            cardWriterDto.setExpression(cardBox.getCardWriter().getExpression().getValue());
-//            addSlotIds();
-//            addPicture();
-//            addDefinition();
-//            addExamples();
-//            addTranscriptions();
+            //            cardWriterDto.setExpression(cardBox.getCardWriter().getExpression().getValue());
+            //            addSlotIds();
+            //            addPicture();
+            //            addDefinition();
+            //            addExamples();
+            //            addTranscriptions();
             return cardWriterDto;
         }
     }

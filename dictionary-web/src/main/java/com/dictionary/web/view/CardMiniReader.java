@@ -38,17 +38,17 @@ public class CardMiniReader extends VerticalHeaderLayout {
     @Getter
     private final Button buttonRemove;
 
-
     public CardMiniReader(String caption) {
         super(caption);
         picture = new MiniDefaultPicture();
         picture.setWidthFull();
         picture.setHeight("190px");
-        picture.getStyle().set("border-bottom", "3px solid #504F51"); //3px solid #212A36
-        HorizontalLayout buttonHorizontal = ComponentBuilder.builder(HorizontalLayout.class)
-                .width(Size.PERCENT_100)
-                .emptyIndent(false, false)
-                .build();
+        picture.getStyle().set("border-bottom", "3px solid #504F51"); // 3px solid #212A36
+        HorizontalLayout buttonHorizontal =
+                ComponentBuilder.builder(HorizontalLayout.class)
+                        .width(Size.PERCENT_100)
+                        .emptyIndent(false, false)
+                        .build();
         buttonHorizontal.getStyle().set("padding", "5px");
         buttonView = CustomButton.builder().icon(VaadinIcon.EYE).build();
         buttonPlay = CustomButton.builder().icon(VaadinIcon.PLAY).build();

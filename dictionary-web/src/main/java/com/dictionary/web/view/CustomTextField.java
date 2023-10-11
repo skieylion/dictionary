@@ -39,6 +39,4 @@ public class CustomTextField {
     public TextField build() {
         return textField;
     }
-
-
 }

@@ -15,18 +15,18 @@ import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteParameters;
 import com.vaadin.flow.router.RouterLayout;
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.security.PermitAll;
-import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import javax.annotation.security.PermitAll;
+import javax.persistence.EntityNotFoundException;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Route(value = "/slots/:slotId/student", layout = Home.class)
@@ -40,7 +40,6 @@ public class Student extends VerticalLayout implements RouterLayout, HasUrlParam
     private final VerticalLayout layout = new VerticalLayout();
     private final CardRememberRepository cardRememberRepository;
 
-
     {
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         exampleDefault.setText("...");
@@ -53,11 +52,12 @@ public class Student extends VerticalLayout implements RouterLayout, HasUrlParam
     private List<Card> getDeadlineCardsBySlotId(Long slotId) {
         return slotService.findById(slotId).getCards().stream()
                 .filter(card -> Objects.nonNull(card.getCardRemember()))
-                .filter(card -> {
-                    long eventTime = card.getCardRemember().getEventDate().toEpochSecond(ZoneOffset.UTC);
-                    long currentTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
-                    return currentTime > eventTime;
-                })
+                .filter(
+                        card -> {
+                            long eventTime = card.getCardRemember().getEventDate().toEpochSecond(ZoneOffset.UTC);
+                            long currentTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+                            return currentTime > eventTime;
+                        })
                 .limit(Student.SIZE)
                 .collect(Collectors.toList());
     }
@@ -79,18 +79,30 @@ public class Student extends VerticalLayout implements RouterLayout, HasUrlParam
         var deadlineCards = getDeadlineCardsBySlotId(id);
         List<Card> cards = deadlineCards.size() > 0 ? deadlineCards : getNewCardsBySlotId(id);
         layout.removeAll();
-        layout.add(new FlashcardTrainer(cards, () -> {
-            cards.stream().map(card -> cardRememberRepository.findByCardId(card.getId()).orElseGet(() -> {
-                var cardRemember = new CardRemember();
-                cardRemember.setCounter(0);
-                cardRemember.setEventDate(LocalDateTime.now());
-                cardRemember.setCard(card);
-                return cardRemember;
-            })).peek(cardRemember -> {
-                cardRemember.setEventDate(LocalDateTime.now());
-                cardRemember.setCounter(cardRemember.getCounter() + 1);
-            }).forEach(cardRememberRepository::save);
-            UI.getCurrent().navigate(Slots.class);
-        }));
+        layout.add(
+                new FlashcardTrainer(
+                        cards,
+                        () -> {
+                            cards.stream()
+                                    .map(
+                                            card ->
+                                                    cardRememberRepository
+                                                            .findByCardId(card.getId())
+                                                            .orElseGet(
+                                                                    () -> {
+                                                                        var cardRemember = new CardRemember();
+                                                                        cardRemember.setCounter(0);
+                                                                        cardRemember.setEventDate(LocalDateTime.now());
+                                                                        cardRemember.setCard(card);
+                                                                        return cardRemember;
+                                                                    }))
+                                    .peek(
+                                            cardRemember -> {
+                                                cardRemember.setEventDate(LocalDateTime.now());
+                                                cardRemember.setCounter(cardRemember.getCounter() + 1);
+                                            })
+                                    .forEach(cardRememberRepository::save);
+                            UI.getCurrent().navigate(Slots.class);
+                        }));
     }
 }

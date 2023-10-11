@@ -1,14 +1,15 @@
 package com.dictionary.core.domain;
 
 import com.dictionary.core.exception.ExtensionNotSupportedException;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
+
+import lombok.Getter;
+import lombok.Setter;
 
 public class MediaFile {
 

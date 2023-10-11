@@ -12,7 +12,6 @@ public final class MediaBase64ToMediaFileConverter {
     private static final Pattern PATTERN_DATA = Pattern.compile("base64,(.*?)(?=,|$)");
 
     private MediaBase64ToMediaFileConverter() {
-
     }
 
     public static MediaFile convertToMediaFile(String dataSource) {
@@ -22,11 +21,12 @@ public final class MediaBase64ToMediaFileConverter {
             matcher = PATTERN_DATA.matcher(dataSource);
             if (matcher.find()) {
                 String data = matcher.group(1);
-                return new MediaFile(UUID.randomUUID().toString(),
-                        ext, Base64.getDecoder().decode(data.getBytes(StandardCharsets.UTF_8)));
+                return new MediaFile(
+                        UUID.randomUUID().toString(),
+                        ext,
+                        Base64.getDecoder().decode(data.getBytes(StandardCharsets.UTF_8)));
             }
         }
         throw new IllegalArgumentException("The data source is not valid");
     }
-
 }

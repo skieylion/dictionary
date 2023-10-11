@@ -1,12 +1,13 @@
 package com.dictionary.core.domain;
 
 import com.dictionary.core.exception.ExtensionNotSupportedException;
-import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import lombok.Getter;
 
 public enum MediaType {
     JPE("jpe", "image/jpeg"),

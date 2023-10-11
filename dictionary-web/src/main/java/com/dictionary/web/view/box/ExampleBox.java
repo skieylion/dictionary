@@ -1,8 +1,8 @@
 package com.dictionary.web.view.box;
 
 import com.dictionary.web.view.CustomTextField;
-import com.dictionary.web.view.layout.FullHorizontalLayout;
 import com.dictionary.web.view.button.CustomButton;
+import com.dictionary.web.view.layout.FullHorizontalLayout;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.notification.Notification;
@@ -23,21 +23,20 @@ public class ExampleBox extends VerticalLayout {
     }
 
     public void addExample() {
-        var textField = CustomTextField.builder().value("").fullWidth()
-                .clearButton(true).build();
+        var textField = CustomTextField.builder().value("").fullWidth().clearButton(true).build();
         textField.addThemeVariants(TextFieldVariant.LUMO_SMALL);
-        var buttonClose = CustomButton.builder()
-                .icon(new Icon("lumo", "cross")).build();
+        var buttonClose = CustomButton.builder().icon(new Icon("lumo", "cross")).build();
         buttonClose.addThemeVariants(ButtonVariant.LUMO_SMALL);
         var hl = new FullHorizontalLayout();
         hl.add(textField, buttonClose);
-        buttonClose.addClickListener(listener -> {
-            if (this.getComponentCount() > 1) {
-                this.remove(hl);
-            } else {
-                Notification.show("You can't remove a single example");
-            }
-        });
+        buttonClose.addClickListener(
+                listener -> {
+                    if (this.getComponentCount() > 1) {
+                        this.remove(hl);
+                    } else {
+                        Notification.show("You can't remove a single example");
+                    }
+                });
         add(hl);
     }
 

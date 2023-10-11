@@ -21,14 +21,15 @@ public class CheckboxGroupView extends VerticalLayout {
         setAlignItems(FlexComponent.Alignment.CENTER);
         checkboxGroup = new CheckboxGroup<>();
         setItems(items);
-        checkboxGroup.addValueChangeListener(l -> {
-            var set = except(l.getValue(), l.getOldValue());
-            boolean isAdded = set.size() > 0;
-            set.addAll(except(l.getOldValue(), l.getValue()));
-            set.stream()
-                    .map(item -> ElementType.valueOf(item.toUpperCase()))
-                    .forEach(elementType -> listener.accept(elementType, isAdded));
-        });
+        checkboxGroup.addValueChangeListener(
+                l -> {
+                    var set = except(l.getValue(), l.getOldValue());
+                    boolean isAdded = set.size() > 0;
+                    set.addAll(except(l.getOldValue(), l.getValue()));
+                    set.stream()
+                            .map(item -> ElementType.valueOf(item.toUpperCase()))
+                            .forEach(elementType -> listener.accept(elementType, isAdded));
+                });
         add(checkboxGroup);
     }
 
@@ -52,9 +53,7 @@ public class CheckboxGroupView extends VerticalLayout {
 
     public void select(Set<ElementType> items) {
         checkboxGroup.clear();
-        checkboxGroup.select(items.stream()
-                .map(Enum::name)
-                .collect(Collectors.toSet()));
+        checkboxGroup.select(items.stream().map(Enum::name).collect(Collectors.toSet()));
     }
 
     private static Set<String> except(Set<String> set1, Set<String> set2) {

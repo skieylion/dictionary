@@ -1,6 +1,5 @@
 package com.dictionary.web.service;
 
-import com.dictionary.web.controller.Home;
 import com.dictionary.web.controller.NewSlot;
 import com.dictionary.web.controller.Slots;
 import com.dictionary.web.controller.Writer;
@@ -9,9 +8,13 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
+import lombok.Getter;
 
+@Getter
 public enum Navigator {
-    SLOTS(0, Slots.class), NEW_SLOT(1, NewSlot.class), WRITER(2, Writer.class);
+    SLOTS(0, Slots.class),
+    NEW_SLOT(1, NewSlot.class),
+    WRITER(2, Writer.class);
     private static Tabs tabs;
     private final int index;
     private final Class<? extends Component> clazz;
@@ -19,10 +22,6 @@ public enum Navigator {
     Navigator(int index, Class<? extends Component> clazz) {
         this.index = index;
         this.clazz = clazz;
-    }
-
-    public int getIndex() {
-        return index;
     }
 
     public void select() {
@@ -36,8 +35,9 @@ public enum Navigator {
     }
 
     public void refresh() {
-        UI.getCurrent().navigate(Home.class);
-        UI.getCurrent().navigate(clazz);
+//        UI.getCurrent().navigate(Home.class);
+//        UI.getCurrent().navigate(clazz);
+        UI.getCurrent().getPage().executeJs("location.reload();");
     }
 
     public static Tabs createMenu(int slotsCount) {
@@ -47,9 +47,10 @@ public enum Navigator {
         tabs.add(new Tab(new Span("hints (10)")));
         tabs.add(new Tab(new Span("settings")));
         tabs.add(new Tab(new Span("tariff (free)")));
-        tabs.addSelectedChangeListener(event -> {
-            event.getSelectedTab().getId().ifPresent(id -> Navigator.navigate(Navigator.valueOf(id)));
-        });
+        tabs.addSelectedChangeListener(
+                event -> {
+                    event.getSelectedTab().getId().ifPresent(id -> Navigator.navigate(Navigator.valueOf(id)));
+                });
         return tabs;
     }
 
@@ -61,7 +62,7 @@ public enum Navigator {
 
     private static Tab createTabSlots(int count) {
         Span counter = new Span(String.format(" (%d) ", count));
-        //counter.getElement().getThemeList().add("badge error primary pill small");
+        // counter.getElement().getThemeList().add("badge error primary pill small");
         counter.getStyle().set("color", "red");
         var tabSlots = new Tab(new Span("slots "), counter);
         tabSlots.setId(Navigator.SLOTS.name());

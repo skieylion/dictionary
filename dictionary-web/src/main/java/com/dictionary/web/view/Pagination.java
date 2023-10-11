@@ -6,10 +6,10 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
-import lombok.Getter;
 
 import java.util.function.Consumer;
 
+import lombok.Getter;
 
 public class Pagination extends HorizontalLayout {
 
@@ -40,20 +40,21 @@ public class Pagination extends HorizontalLayout {
         Slider slider = new Slider(size);
         next.addClickListener(l -> slider.next());
         prev.addClickListener(l -> slider.prev());
-        slider.change((direction, index) -> {
-            prev.setEnabled(true);
-            next.setEnabled(true);
-            if (index == 0) {
-                prev.setEnabled(false);
-            }
-            if (index == size - 1) {
-                next.setEnabled(false);
-            }
-            progressBar.setValue(index + 1);
-            if (consumer != null) {
-                consumer.accept(index);
-            }
-        });
+        slider.change(
+                (direction, index) -> {
+                    prev.setEnabled(true);
+                    next.setEnabled(true);
+                    if (index == 0) {
+                        prev.setEnabled(false);
+                    }
+                    if (index == size - 1) {
+                        next.setEnabled(false);
+                    }
+                    progressBar.setValue(index + 1);
+                    if (consumer != null) {
+                        consumer.accept(index);
+                    }
+                });
         slider.init();
     }
 

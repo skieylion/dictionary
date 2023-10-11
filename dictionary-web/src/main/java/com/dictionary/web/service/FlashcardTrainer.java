@@ -4,11 +4,11 @@ import com.dictionary.core.domain.AudioFile;
 import com.dictionary.core.domain.Card;
 import com.dictionary.core.domain.DefaultAudioFile;
 import com.dictionary.core.domain.Example;
-import com.dictionary.web.domain.Trainer;
 import com.dictionary.core.domain.Transcription;
+import com.dictionary.web.domain.Trainer;
+import com.dictionary.web.service.filter.AssociationTrainerCardFilter;
 import com.dictionary.web.service.filter.CardFilter;
 import com.dictionary.web.service.filter.CardSource;
-import com.dictionary.web.service.filter.AssociationTrainerCardFilter;
 import com.dictionary.web.service.filter.ExampleTrainerCardFilter;
 import com.dictionary.web.service.filter.FilterUtils;
 import com.dictionary.web.service.filter.SoundTrainerCardFilter;
@@ -31,15 +31,17 @@ public class FlashcardTrainer extends VerticalLayout {
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
     }
 
-    private static final List<Function<Card, Trainer>> TRAINER_MAP = List.of(
-            FlashcardTrainer::createAssociationTrainer,
-            FlashcardTrainer::createContextTrainer,
-            FlashcardTrainer::createSoundTrainer);
+    private static final List<Function<Card, Trainer>> TRAINER_MAP =
+            List.of(
+                    FlashcardTrainer::createAssociationTrainer,
+                    FlashcardTrainer::createContextTrainer,
+                    FlashcardTrainer::createSoundTrainer);
 
-    private static final List<Function<CardFilter, CardFilter>> FILTER_MAP = List.of(
-            AssociationTrainerCardFilter::new,
-            ExampleTrainerCardFilter::new,
-            SoundTrainerCardFilter::new);
+    private static final List<Function<CardFilter, CardFilter>> FILTER_MAP =
+            List.of(
+                    AssociationTrainerCardFilter::new,
+                    ExampleTrainerCardFilter::new,
+                    SoundTrainerCardFilter::new);
 
     private int index;
     private final CardSource cardSource;
@@ -59,17 +61,21 @@ public class FlashcardTrainer extends VerticalLayout {
 
     private void train(List<Card> cards) {
         CardFilter cardFilter = FILTER_MAP.get(index).apply(new CardSource(cards));
-        List<Trainer> trainers = cardFilter.apply().stream()
-                .map(card -> TRAINER_MAP.get(index).apply(card))
-                .collect(Collectors.toList());
+        List<Trainer> trainers =
+                cardFilter.apply().stream()
+                        .map(card -> TRAINER_MAP.get(index).apply(card))
+                        .collect(Collectors.toList());
         if (trainers.size() > 0) {
-            FlashcardExerciseTrainer trainer = new FlashcardExerciseTrainer(trainers, wrongCards -> {
-                if (wrongCards.size() > 0) {
-                    read(wrongCards);
-                } else {
-                    nextOrFinish();
-                }
-            });
+            FlashcardExerciseTrainer trainer =
+                    new FlashcardExerciseTrainer(
+                            trainers,
+                            wrongCards -> {
+                                if (wrongCards.size() > 0) {
+                                    read(wrongCards);
+                                } else {
+                                    nextOrFinish();
+                                }
+                            });
             removeAll();
             add(trainer);
         } else {
@@ -101,9 +107,11 @@ public class FlashcardTrainer extends VerticalLayout {
         Collections.shuffle(exampleList);
         String example = exampleList.size() > 0 ? exampleList.get(0).getText() : "";
         if (!example.contains("{")) {
-            example = example.replaceAll(card.getExpression(), String.format("{%s}", card.getExpression()));
+            example =
+                    example.replaceAll(card.getExpression(), String.format("{%s}", card.getExpression()));
         }
-        Trainer trainer = new ContextTrainer(example, card.getDefinition(), card.getExpression().length());
+        Trainer trainer =
+                new ContextTrainer(example, card.getDefinition(), card.getExpression().length());
         trainer.setCard(card);
         trainer.setInspector((value) -> card.getExpression().equalsIgnoreCase(value));
         return trainer;
@@ -116,7 +124,8 @@ public class FlashcardTrainer extends VerticalLayout {
         if (transcriptions.size() > 0) {
             var transcription = transcriptions.get(0);
             if (Objects.nonNull(transcription.getFile())) {
-                trainer = new SoundTrainer(new AudioFile(transcription.getFile()), card.getExpression().length());
+                trainer =
+                        new SoundTrainer(new AudioFile(transcription.getFile()), card.getExpression().length());
             }
         }
         trainer.setCard(card);

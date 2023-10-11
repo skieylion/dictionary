@@ -4,9 +4,9 @@ import com.dictionary.core.domain.Card;
 import com.dictionary.core.domain.Example;
 import com.dictionary.web.view.ButtonController;
 import com.dictionary.web.view.CardReader;
-import com.dictionary.web.view.button.CustomButton;
 import com.dictionary.web.view.Picture;
 import com.dictionary.web.view.StandardDefaultPicture;
+import com.dictionary.web.view.button.CustomButton;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -36,15 +36,17 @@ public class FlashcardReaderTrainer extends VerticalLayout {
     private final ButtonController buttonController;
 
     public FlashcardReaderTrainer(List<Card> cards, Runnable runnable) {
-        var cardReaderList = cards.stream()
-                .map(FlashcardReaderTrainer::createCardReaderFromCard)
-                .collect(Collectors.toList());
+        var cardReaderList =
+                cards.stream()
+                        .map(FlashcardReaderTrainer::createCardReaderFromCard)
+                        .collect(Collectors.toList());
         Slider slider = new Slider(cards.size());
         buttonController = createButtonController(slider, runnable);
-        slider.change((dir, index) -> {
-            addCardReader(cardReaderList.get(index));
-            setButtonState(index, cardReaderList.size());
-        });
+        slider.change(
+                (dir, index) -> {
+                    addCardReader(cardReaderList.get(index));
+                    setButtonState(index, cardReaderList.size());
+                });
         slider.init();
     }
 
@@ -72,17 +74,21 @@ public class FlashcardReaderTrainer extends VerticalLayout {
         return ButtonController.builder()
                 .button(prevButton, button -> slider.prev())
                 .button(nextButton, button -> slider.next())
-                .button(academyButton, button -> {
-                    runnable.run();
-                })
+                .button(
+                        academyButton,
+                        button -> {
+                            runnable.run();
+                        })
                 .build();
     }
 
     private static CardReader createCardReaderFromCard(Card card) {
         var file = card.getPictureFile();
         var picture = Objects.nonNull(file) ? new Picture(file) : new StandardDefaultPicture();
-        return new CardReader(card.getExpression(),
-                picture.getPictureFile(), card.getDefinition(),
+        return new CardReader(
+                card.getExpression(),
+                picture.getPictureFile(),
+                card.getDefinition(),
                 new ArrayList<>(card.getTranscriptions()),
                 card.getExamples().stream().map(Example::getText).collect(Collectors.toList()));
     }

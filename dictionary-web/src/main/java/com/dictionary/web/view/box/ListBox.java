@@ -1,7 +1,7 @@
 package com.dictionary.web.view.box;
 
-import com.dictionary.web.domain.ListBoxItem;
 import com.dictionary.core.domain.Size;
+import com.dictionary.web.domain.ListBoxItem;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import java.util.ArrayList;
@@ -48,22 +48,28 @@ public class ListBox extends VerticalLayout {
     }
 
     public void clickRemoveListener(ListBoxItem listBoxItem) {
-        listBoxItem.getCloseButton().addClickListener(event -> {
-            remove(listBoxItem.getLayout());
-            items.remove(listBoxItem);
-            items.get(items.size() - 1).getPlusButton().setEnabled(true);
-            refreshState();
-        });
+        listBoxItem
+                .getCloseButton()
+                .addClickListener(
+                        event -> {
+                            remove(listBoxItem.getLayout());
+                            items.remove(listBoxItem);
+                            items.get(items.size() - 1).getPlusButton().setEnabled(true);
+                            refreshState();
+                        });
     }
 
     public void clickAddListener(ListBoxItem listBoxItem, Runnable runnable) {
-        listBoxItem.getPlusButton().addClickListener(event -> {
-            if (items.size() < count) {
-                listBoxItem.getPlusButton().setEnabled(false);
-                runnable.run();
-                refreshState();
-            }
-        });
+        listBoxItem
+                .getPlusButton()
+                .addClickListener(
+                        event -> {
+                            if (items.size() < count) {
+                                listBoxItem.getPlusButton().setEnabled(false);
+                                runnable.run();
+                                refreshState();
+                            }
+                        });
     }
 
     public void clearItems() {

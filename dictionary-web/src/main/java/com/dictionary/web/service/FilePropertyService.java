@@ -1,18 +1,17 @@
 package com.dictionary.web.service;
 
-
 import com.dictionary.core.domain.FileProperty;
 import com.dictionary.core.domain.MediaFile;
-import com.dictionary.core.repository.FileStorageRepository;
 import com.dictionary.core.repository.FilePropertyRepository;
+import com.dictionary.core.repository.FileStorageRepository;
+
+import java.util.Optional;
+import java.util.UUID;
+import javax.persistence.EntityNotFoundException;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
-import java.util.UUID;
-
 
 @Service
 @AllArgsConstructor
@@ -53,11 +52,13 @@ public class FilePropertyService {
 
     @Transactional(readOnly = true)
     public Optional<FileProperty> findById(String fileId) {
-        return filePropertyRepository
-                .findById(UUID.fromString(fileId))
-                .stream()
-                .peek(fileWrapper -> fileWrapper.setMediaFile(fileStorageRepository
-                        .findByName(fileWrapper.getExternalId()).orElseThrow(EntityNotFoundException::new)))
+        return filePropertyRepository.findById(UUID.fromString(fileId)).stream()
+                .peek(
+                        fileWrapper ->
+                                fileWrapper.setMediaFile(
+                                        fileStorageRepository
+                                                .findByName(fileWrapper.getExternalId())
+                                                .orElseThrow(EntityNotFoundException::new)))
                 .findFirst();
     }
 
@@ -72,5 +73,4 @@ public class FilePropertyService {
     public void deleteByFileProperty(FileProperty fileProperty) {
         deleteById(fileProperty.getId());
     }
-
 }

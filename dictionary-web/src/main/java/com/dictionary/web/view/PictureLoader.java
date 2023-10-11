@@ -60,7 +60,12 @@ public class PictureLoader extends VerticalLayout {
         pagination = new Pagination();
         FileUploader uploader = createUploader(picture);
         Scroller scroller = createScroller(picture);
-        TextField clipField = CustomTextField.builder().fullWidth().clearButton(true).placeholder(DEFAULT_CLIP_TEXT).build();
+        TextField clipField =
+                CustomTextField.builder()
+                        .fullWidth()
+                        .clearButton(true)
+                        .placeholder(DEFAULT_CLIP_TEXT)
+                        .build();
         var wrapper = createWrapper(clipField, scroller, uploader);
         add(wrapper);
     }
@@ -73,14 +78,17 @@ public class PictureLoader extends VerticalLayout {
     private static FileUploader createUploader(Picture picture) {
         FileUploader uploader = FileUploader.createInstance();
         uploader.setWidthFull();
-        uploader.addFileUploaderListener(file -> {
-            picture.setPictureFile(new PictureFile(file));
-        });
-        uploader.setAcceptedFileTypes(MediaType.getExtensionsFromMediaTypeList(MediaType.getImageTypes()));
+        uploader.addFileUploaderListener(
+                file -> {
+                    picture.setPictureFile(new PictureFile(file));
+                });
+        uploader.setAcceptedFileTypes(
+                MediaType.getExtensionsFromMediaTypeList(MediaType.getImageTypes()));
         return uploader;
     }
 
-    private VerticalLayout createWrapper(TextField clipField, Scroller scroller, FileUploader uploader) {
+    private VerticalLayout createWrapper(
+            TextField clipField, Scroller scroller, FileUploader uploader) {
         var layout = new VerticalLayout();
         var wrapper = new Wrapper();
         wrapper.add(clipField);

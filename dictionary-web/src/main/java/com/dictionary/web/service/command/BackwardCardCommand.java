@@ -9,6 +9,5 @@ public class BackwardCardCommand extends CardCommand {
 
     @Override
     public void execute() {
-
     }
 }

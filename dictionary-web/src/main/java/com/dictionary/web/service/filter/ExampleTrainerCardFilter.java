@@ -16,5 +16,4 @@ public class ExampleTrainerCardFilter extends CardFilterAbstract {
                 .filter(card -> FilterUtils.examples(card.getExamples()).size() > 0)
                 .collect(Collectors.toList());
     }
-
 }

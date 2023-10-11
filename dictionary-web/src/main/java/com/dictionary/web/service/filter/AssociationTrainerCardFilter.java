@@ -14,9 +14,8 @@ public class AssociationTrainerCardFilter extends CardFilterAbstract {
     @Override
     public List<Card> apply() {
         return super.apply().stream()
-                .filter(card -> Objects.nonNull(card.getDefinition())
-                        || Objects.nonNull(card.getPictureFile()))
+                .filter(
+                        card -> Objects.nonNull(card.getDefinition()) || Objects.nonNull(card.getPictureFile()))
                 .collect(Collectors.toList());
     }
-
 }

@@ -14,14 +14,15 @@ public class NewCardCommand extends CardCommand {
 
     @Override
     public void execute() {
-        var removeButton = ButtonMini.builder()
-                .icon(new Icon("lumo", "cross"))
-                .click(l -> {
-                    new DeleteCardCommand(context).execute();
-                    context.getContextContainer().getDeque()
-                            .removeIf(ctx -> ctx == context);
-                })
-                .build();
+        var removeButton =
+                ButtonMini.builder()
+                        .icon(new Icon("lumo", "cross"))
+                        .click(
+                                l -> {
+                                    new DeleteCardCommand(context).execute();
+                                    context.getContextContainer().getDeque().removeIf(ctx -> ctx == context);
+                                })
+                        .build();
         var buttons = new ArrayList<>(context.getButtons());
         buttons.add(removeButton);
         var container = context.getCardContainer().add(context.getComponent(), buttons);

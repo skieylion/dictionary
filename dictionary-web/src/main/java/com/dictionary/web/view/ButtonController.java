@@ -28,9 +28,10 @@ public final class ButtonController extends VerticalLayout {
 
         public ButtonControllerBuilder button(Button button, Consumer<Button> consumer) {
             buttons.add(button);
-            button.addClickListener(listener -> {
-                consumer.accept(button);
-            });
+            button.addClickListener(
+                    listener -> {
+                        consumer.accept(button);
+                    });
             return this;
         }
 
@@ -41,8 +42,5 @@ public final class ButtonController extends VerticalLayout {
             ctrl.add(layout);
             return ctrl;
         }
-
     }
-
-
 }

@@ -19,16 +19,13 @@ public abstract class CardContextBaseCreator {
         context.setCardContainer(contextContainer.getContainer());
         context.setContextContainer(contextContainer);
         createMenuItem(context);
-        Optional.ofNullable(next)
-                .ifPresent(next -> next.handle(contextContainer));
+        Optional.ofNullable(next).ifPresent(next -> next.handle(contextContainer));
     }
 
     private static void createMenuItem(CardContext context) {
         var item = context.getContextContainer().getMenu().addItem(context.getTitle());
         context.setItem(item);
-        item.addClickListener(listener -> {
-            new NewCardCommand(context).execute();
-        });
+        item.addClickListener(listener -> new NewCardCommand(context).execute());
     }
 
     abstract CardContext createContext();

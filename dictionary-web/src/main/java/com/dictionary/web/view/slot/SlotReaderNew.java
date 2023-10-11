@@ -1,6 +1,5 @@
 package com.dictionary.web.view.slot;
 
-
 import com.dictionary.core.domain.Size;
 import com.dictionary.core.domain.SlotStat;
 import com.dictionary.web.view.ComponentBuilder;
@@ -18,12 +17,13 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.menubar.MenuBarVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import lombok.Getter;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.stream.Stream;
+
+import lombok.Getter;
 
 public class SlotReaderNew extends VerticalHeaderLayout {
     {
@@ -60,15 +60,15 @@ public class SlotReaderNew extends VerticalHeaderLayout {
         picture = new MiniDefaultPicture();
         picture.setWidthFull();
         picture.setHeight("212px");
-        picture.getStyle().set("border-bottom", "3px solid #504F51"); //3px solid #212A36
-        HorizontalLayout buttonHorizontal = ComponentBuilder.builder(HorizontalLayout.class)
-                .width(Size.PERCENT_100)
-                .emptyIndent(false, false)
-                .build();
+        picture.getStyle().set("border-bottom", "3px solid #504F51"); // 3px solid #212A36
+        HorizontalLayout buttonHorizontal =
+                ComponentBuilder.builder(HorizontalLayout.class)
+                        .width(Size.PERCENT_100)
+                        .emptyIndent(false, false)
+                        .build();
         buttonHorizontal.getStyle().set("padding", "5px");
         viewButton = CustomButton.builder().icon(VaadinIcon.EYE).build();
         academyButton = CustomButton.builder().icon(VaadinIcon.ACADEMY_CAP).build();
-
 
         MenuBar menuBar = new MenuBar();
         menuBar.getStyle().set("position", "relative");
@@ -88,15 +88,20 @@ public class SlotReaderNew extends VerticalHeaderLayout {
     public void setStatistic(SlotStat stat) {
         statisticDiv.removeAll();
         Deque<String> colors = new ArrayDeque<>(Arrays.asList("white", "green", "#FFBF00", "red"));
-        Stream.of(stat.getTotalCount(), stat.getStudiedCount(), stat.getWaitingCount(), stat.getOverdueCount())
+        Stream.of(
+                        stat.getTotalCount(),
+                        stat.getStudiedCount(),
+                        stat.getWaitingCount(),
+                        stat.getOverdueCount())
                 .map(v -> new Paragraph(String.format(" %d ", v)))
-                .peek(p -> {
-                    p.getStyle().set("float", "right");
-                    //p.getStyle().set("background-color", "white");
-                    p.getStyle().set("color", colors.pop());
-                    p.getStyle().set("font-weight", "bold");
-                    p.getStyle().set("white-space", "pre");
-                })
+                .peek(
+                        p -> {
+                            p.getStyle().set("float", "right");
+                            // p.getStyle().set("background-color", "white");
+                            p.getStyle().set("color", colors.pop());
+                            p.getStyle().set("font-weight", "bold");
+                            p.getStyle().set("white-space", "pre");
+                        })
                 .forEach(statisticDiv::add);
     }
 }

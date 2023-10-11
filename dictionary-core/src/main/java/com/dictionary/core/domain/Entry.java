@@ -1,8 +1,8 @@
 package com.dictionary.core.domain;
 
-import lombok.Data;
-
 import java.util.List;
+
+import lombok.Data;
 
 @Data
 public class Entry {
@@ -105,6 +105,4 @@ public class Entry {
         private List<Pronunciation> pronunciations;
         private List<Sense> senses;
     }
-
-
 }
